@@ -14,6 +14,10 @@ const state = {
 };
 
 let touchStartY = null;
+let lastTouchY = null;
+let bottomRevealProgress = 0;
+
+const BOTTOM_REVEAL_DISTANCE = 320;
 
 const palette = [
   "rgba(11,34,66,0.07)",
@@ -24,34 +28,26 @@ const palette = [
 
 const sprites = {
   rabbit: [
-    "000000000DD000000DD000000000",
-    "00000000DSSD0000DSSD00000000",
-    "00000000DSSD0000DSSD00000000",
-    "00000000DSSD0000DSSD00000000",
-    "00000000DSSD0000DSSD00000000",
-    "000000000DD000000DD000000000",
-    "00000000DDDDDDDDDDDD00000000",
-    "0000000DDLLLLLLLLLLDD0000000",
-    "000000DDLLLLLLLLLLLLDD000000",
-    "00000DDLLLLLDLLDLLLLLDD00000",
-    "00000DDLLLLLBBBBLLLLLDD00000",
-    "00000DDLLLLLMMMMLLLLLDD00000",
-    "000000DDLLLLLLLLLLLLDD000000",
-    "00000DDDLLLLLLLLLLLLDDD00000",
-    "0000DDDLLLLLLLLLLLLLLDDD0000",
-    "000DDDLLLLLLLLLLLLLLLLDDD000",
-    "000DDDLLLLLLLLLLLLLLLLDDD000",
-    "000DDLLLLLLLLLLLLLLLLLLDD000",
-    "000DDLLLLLLLLLLLLLLLLLLDD000",
-    "0000DDDLLLLLLLLLLLLLLDDD0000",
-    "00000DDDLLLLLLLLLLLLDDD00000",
-    "000000DDLLLLLLLLLLLLDD000000",
-    "0000000DDDLLLL00LLLDDD000000",
-    "00000000DDD000000DDD00000000",
-    "0000000DDDD000000DDDD0000000",
-    "0000000000000000000000000000",
-    "0000000000000000000000000000",
-    "0000000000000000000000000000",
+    "0000DDD0000DDD0000",
+    "00DLLD000000DLLD00",
+    "0DLBLD000000DLBLD0",
+    "0DLBLD000000DLBLD0",
+    "00DLLLDDDDDDLLLD00",
+    "0DLLLLLLLLLLLLLLD0",
+    "0DLLLDLLLLLDLLLD00",
+    "0DLLLDLLLLLDLLLD00",
+    "0DLBLLLLLLLLLBLD00",
+    "0DLLLLLLLLLLLLLD00",
+    "0DLLLLLLLLLLLLLLD0",
+    "00DLLLLLLLLLLLLD00",
+    "000DLLLLLLLLLLD000",
+    "000DLLLLLLLLLLD000",
+    "00DLLLLLLLLLLLLD00",
+    "0DLLLLLLLLLLLLLLD0",
+    "0DLLLLLLLLLLLLLLD0",
+    "00DLLLLLLLLLLLLD00",
+    "00DLLLDDDDDDLLLD00",
+    "0000DD000000DD0000",
   ],
   cat: [
     "0000000000000000000000000000",
@@ -272,30 +268,51 @@ function revealBottomPets() {
   bottomPets.setAttribute("aria-hidden", "false");
 }
 
-function handleBottomWheel(event) {
-  if (event.deltaY > 12 && isAtPageBottom()) {
+function resetBottomRevealProgress() {
+  bottomRevealProgress = 0;
+}
+
+function advanceBottomRevealProgress(amount) {
+  if (!bottomPets || bottomPets.classList.contains("is-visible")) return;
+  bottomRevealProgress += amount;
+  if (bottomRevealProgress >= BOTTOM_REVEAL_DISTANCE) {
     revealBottomPets();
   }
+}
+
+function handleBottomWheel(event) {
+  if (event.deltaY <= 0 || !isAtPageBottom()) {
+    resetBottomRevealProgress();
+    return;
+  }
+
+  advanceBottomRevealProgress(Math.min(event.deltaY, 120));
 }
 
 function handleBottomKey(event) {
   const keys = ["ArrowDown", "PageDown", "End", " "];
   if (keys.includes(event.key) && isAtPageBottom()) {
-    revealBottomPets();
+    advanceBottomRevealProgress(110);
   }
 }
 
 function handleTouchStart(event) {
   touchStartY = event.touches[0]?.clientY ?? null;
+  lastTouchY = touchStartY;
 }
 
 function handleTouchMove(event) {
-  if (touchStartY === null) return;
+  if (touchStartY === null || lastTouchY === null) return;
   const currentY = event.touches[0]?.clientY ?? touchStartY;
-  const swipingDownPastBottom = touchStartY - currentY > 18;
-  if (swipingDownPastBottom && isAtPageBottom()) {
-    revealBottomPets();
+  const downwardDistance = lastTouchY - currentY;
+  lastTouchY = currentY;
+
+  if (downwardDistance <= 0 || !isAtPageBottom()) {
+    resetBottomRevealProgress();
+    return;
   }
+
+  advanceBottomRevealProgress(downwardDistance * 1.35);
 }
 
 function showPetMessage() {
@@ -359,7 +376,6 @@ window.addEventListener("pointermove", (event) => {
 });
 window.addEventListener("dblclick", spawnEasterEgg);
 window.addEventListener("wheel", handleBottomWheel, { passive: true });
-document.addEventListener("wheel", handleBottomWheel, { passive: true });
 window.addEventListener("keydown", handleBottomKey);
 window.addEventListener("touchstart", handleTouchStart, { passive: true });
 window.addEventListener("touchmove", handleTouchMove, { passive: true });
