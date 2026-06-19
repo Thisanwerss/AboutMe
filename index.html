@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dian Yu - robotics researcher working on reliable robot learning, safety-critical control, foundation models for robotics, and sim-to-real deployment.">
+  <meta name="author" content="Dian Yu">
+  <meta name="theme-color" content="#f3efe4">
+  <title>Dian Yu | Robotics Researcher</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="signal-field" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Dian Yu home">
+      <span class="mark"></span>
+      <span>Dian Yu</span>
+      <span class="build-id">robot learning / control</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#work">Work</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Technical University of Munich · ATARI Lab</p>
+          <h1 class="serif-title">Dian Yu</h1>
+          <p class="lead">
+            PhD candidate working on reliable robot learning, safety-critical control, and foundation models for physical robot systems.
+          </p>
+          <p class="profile-summary">
+            My research sits between generative action policies and explicit physical structure: diffusion and flow-matching models, control barrier functions, trajectory optimization, and hardware deployment.
+          </p>
+          <div class="lab-readout" aria-label="Research readout">
+            <div><span>role</span><strong>PhD Candidate</strong></div>
+            <div><span>focus</span><strong>robot learning under constraints</strong></div>
+            <div><span>stack</span><strong>diffusion · flow matching · CBF · MPC</strong></div>
+          </div>
+          <div class="hero-actions">
+            <a class="primary-action" href="mailto:go69joc@mytum.de">Email</a>
+            <a class="secondary-action" href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+            <a class="secondary-action" href="https://linkedin.com/in/dian-yu-51b6652ab" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
+        <aside class="portrait-panel" aria-label="Portrait of Dian Yu">
+          <div class="portrait-frame">
+            <img src="portrait.jpg" alt="Dian Yu portrait">
+          </div>
+          <div class="portrait-meta">
+            <span>Munich, Germany</span>
+            <span>Reliable Robot Learning</span>
+          </div>
+        </aside>
+      </div>
+      <div class="hero-rail" aria-hidden="true">RCI / CONTROL / VLA / SIM2REAL</div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="section-head">
+        <p class="section-label">Research</p>
+        <h2>Learning-enabled robots with explicit physical structure.</h2>
+      </div>
+      <div class="research-grid">
+        <article class="research-card">
+          <span>01</span>
+          <h3>Diffusion policy discovery</h3>
+          <p>Mining rare but valid behaviors from diffusion policies, repairing them with sampling-based trajectory optimization, and folding them back into training.</p>
+        </article>
+        <article class="research-card">
+          <span>02</span>
+          <h3>Certified generative planning</h3>
+          <p>Combining flow matching, control barrier functions, convex optimization, and prescribed-time dynamics for constraint-aware robot motion generation.</p>
+        </article>
+        <article class="research-card">
+          <span>03</span>
+          <h3>Multimodal VLA systems</h3>
+          <p>Extending vision-language-action policies with physical sensing, thermal perception, and runtime safety filters for real-world manipulation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split-section" id="publications">
+      <div class="section-head sticky-head">
+        <p class="section-label">Publications</p>
+        <h2>Selected papers.</h2>
+        <p class="section-note">Diffusion policies, flow matching, certified constraints, thermal VLA, and deployment-facing robot systems.</p>
+      </div>
+      <div class="publication-list">
+        <article class="publication-card featured">
+          <div class="pub-meta">
+            <span>2026</span>
+            <span>Preprint</span>
+          </div>
+          <h3>Guided Discovery of New Behaviors using Diffusion Policies</h3>
+          <p><strong>Dian Yu</strong>, Sebastian Sanokowski, Majid Khadiv</p>
+          <a href="https://arxiv.org/abs/2606.08743" target="_blank" rel="noopener">arXiv:2606.08743</a>
+        </article>
+
+        <article class="publication-card">
+          <div class="pub-meta">
+            <span>2026</span>
+            <span>IROS 2026</span>
+          </div>
+          <h3>Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation</h3>
+          <p><strong>Dian Yu*</strong>, Qingchuan Zhou*, Bingkun Huang, Majid Khadiv, Zewen Yang</p>
+          <a href="https://arxiv.org/abs/2603.05754" target="_blank" rel="noopener">arXiv:2603.05754</a>
+        </article>
+
+        <article class="publication-card">
+          <div class="pub-meta">
+            <span>2026</span>
+            <span>Preprint</span>
+          </div>
+          <h3>DynaRetarget: Dynamically-Feasible Retargeting using Sampling-Based Trajectory Optimization</h3>
+          <p>Victor Dhedin*, Ilyass Taouil*, Shafeef Omar*, <strong>Dian Yu</strong>, Kun Tao, Angela Dai, Majid Khadiv</p>
+          <a href="https://arxiv.org/abs/2602.06827" target="_blank" rel="noopener">arXiv:2602.06827</a>
+        </article>
+
+        <article class="publication-card">
+          <div class="pub-meta">
+            <span>2025</span>
+            <span>Preprint</span>
+          </div>
+          <h3>UniConFlow: A Unified Constrained Flow-Matching Framework for Certified Motion Planning</h3>
+          <p>Zewen Yang*, Xiaobing Dai*, <strong>Dian Yu*</strong>, Qianru Li, Majid Khadiv, Sami Haddadin, Sandra Hirche</p>
+          <a href="https://arxiv.org/abs/2506.02955" target="_blank" rel="noopener">arXiv:2506.02955</a>
+        </article>
+
+        <article class="publication-card">
+          <div class="pub-meta">
+            <span>2025</span>
+            <span>Under review</span>
+          </div>
+          <h3>SafeFlow: Safe Robot Motion Planning with Flow Matching via Control Barrier Functions</h3>
+          <p>Xiaobing Dai*, Zewen Yang*, <strong>Dian Yu*</strong>, Fangzhou Liu, Hamid Sadeghian, Sami Haddadin, Sandra Hirche</p>
+          <a href="https://arxiv.org/abs/2504.08661" target="_blank" rel="noopener">arXiv:2504.08661</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split-section" id="experience">
+      <div class="section-head sticky-head">
+        <p class="section-label">Experience</p>
+        <h2>Research, systems, deployment.</h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <time>Jun 2026 - Present</time>
+          <h3>PhD Candidate · Technical University of Munich</h3>
+          <p>ATARI Lab, supervised by Prof. Dr. Majid Khadiv.</p>
+        </article>
+        <article class="timeline-item">
+          <time>Jun 2024 - Jun 2026</time>
+          <h3>Master's Thesis Student & Research Intern · ATARI Lab, MIRMI, TUM</h3>
+          <p>Physically consistent system identification via convex optimization and LMI constraints; sampling-based control and MPC for flow-matching training and inference; VLA models for humanoid loco-manipulation.</p>
+        </article>
+        <article class="timeline-item">
+          <time>Oct 2023 - Present</time>
+          <h3>Student Subteam Lead, Control Team · TUM DASH</h3>
+          <p>ROS2 control stack development and electronics integration for a lower-limb exoskeleton platform.</p>
+        </article>
+        <article class="timeline-item">
+          <time>Sep 2025 - Nov 2025</time>
+          <h3>Working Student · Bosch CR/AIR Robot Learning</h3>
+          <p>Robot learning research and prototyping in Bosch Corporate Research.</p>
+        </article>
+        <article class="timeline-item">
+          <time>Mar 2025 - Nov 2025</time>
+          <h3>Co-founder & Technical Lead · Munitics</h3>
+          <p>Prototype learning-based control for an autonomous legged-wheeled rescue robot; selected as a TUM IDEAward finalist.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section compact-section">
+      <div class="info-grid">
+        <article>
+          <p class="section-label">Education</p>
+          <h3>Technical University of Munich</h3>
+          <p class="education-entry">
+            <span>PhD Candidate, ATARI Lab.</span>
+            <span>M.Sc. Robotics, Cognition, Intelligence, GPA 1.3, graduated with high distinction.</span>
+          </p>
+          <h3>HAW Hamburg / USST</h3>
+          <p>Dual B.Eng. background in electrical engineering and automation, ranked first in both programs.</p>
+        </article>
+        <article>
+          <p class="section-label">Tools</p>
+          <div class="tag-cloud">
+            <span>PyTorch</span>
+            <span>JAX</span>
+            <span>MuJoCo</span>
+            <span>Isaac Sim</span>
+            <span>Genesis</span>
+            <span>ROS2</span>
+            <span>CVXPY</span>
+            <span>MOSEK</span>
+            <span>Slurm</span>
+            <span>Docker</span>
+          </div>
+        </article>
+        <article>
+          <p class="section-label">Languages</p>
+          <p>Chinese native · English full professional · German professional working proficiency.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <p class="section-label">Contact</p>
+      <h2>Open to research conversations around robot learning, safety, and deployment.</h2>
+      <div class="contact-links">
+        <a href="mailto:go69joc@mytum.de">go69joc@mytum.de</a>
+        <a href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://linkedin.com/in/dian-yu-51b6652ab" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Dian Yu. Built as a lightweight static personal page.</p>
+  </footer>
+
+  <aside class="bottom-pets" id="bottom-pets" aria-hidden="true">
+    <div class="pet-stage" aria-label="Hidden companions">
+      <button class="pixel-pet rabbit-pet" type="button" aria-label="Yuna">
+        <span class="pet-bubble">Hi, i am Yuna</span>
+        <span class="sprite-grid" data-sprite="rabbit" aria-hidden="true"></span>
+      </button>
+      <button class="pixel-pet cat-pet" type="button" aria-label="Winter">
+        <span class="pet-bubble">Hi, i am Winter</span>
+        <span class="sprite-grid" data-sprite="cat" aria-hidden="true"></span>
+      </button>
+    </div>
+    <p class="pet-message" id="pet-message">
+      All of the work and progress on this page is carried by the support of the people beside me; they helped me keep going through pressure and low points, and return to the things I work on with lasting passion.
+    </p>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
