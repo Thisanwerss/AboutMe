@@ -121,6 +121,11 @@
 .profile-footer a { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 2.75rem; }
 .profile-footer a:hover { text-decoration: underline; }
 
+/* Let footer links receive clicks through transparent pet decorations. */
+.bottom-pets.is-visible { pointer-events: none; }
+.bottom-pets.is-visible .pixel-pet { pointer-events: auto; }
+.bottom-pets .pet-bubble { pointer-events: none; }
+
 .profile-hero a:focus-visible,
 #contact a:focus-visible,
 .profile-footer a:focus-visible {
