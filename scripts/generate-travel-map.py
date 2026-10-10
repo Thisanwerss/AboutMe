@@ -42,9 +42,9 @@ PLACES = [
     ("Pittsburgh", -79.9959, 40.4406),
 ]
 VIEWS = {
-    "world": ((-180, -60, 180, 84), 220, "World"),
-    "europe": ((-12, 33, 26, 56), 190, "Europe"),
-    "east-asia": ((96, 22, 146, 44), 200, "East Asia"),
+    "world": ((-180, -60, 180, 84), 100, "World"),
+    "europe": ((-12, 33, 26, 56), 90, "Europe"),
+    "east-asia": ((96, 22, 146, 44), 90, "East Asia"),
 }
 metadata = {}
 for key, (bounds, columns, label) in VIEWS.items():
@@ -69,7 +69,7 @@ for key, (bounds, columns, label) in VIEWS.items():
     unit = step * scale
     ox = (1100 - (east - west) * scale) / 2
     oy = (450 - (north - south) * scale) / 2
-    size = unit * 0.78
+    size = unit * 0.82
     inset = (unit - size) / 2
     cells = []
     land_count = 0
@@ -92,18 +92,29 @@ for key, (bounds, columns, label) in VIEWS.items():
             cell = (math.floor((lon - west) / step), math.floor((north - lat) / step))
             visited.setdefault(cell, []).append(name)
     markers = []
+    marked_cells = set()
+    # Larger pixel stamps keep visits visible at the world scale.
+    radius = 1 if key == "world" else 0
     for (col, row), names in visited.items():
-        x, y = ox + col * unit + inset, oy + row * unit + inset
-        markers.append(f'<rect x="{x:.2f}" y="{y:.2f}" width="{size:.2f}" height="{size:.2f}"><title>{", ".join(names)}</title></rect>')
+        footprint = []
+        for dy in range(-radius, radius + 1):
+            for dx in range(-radius, radius + 1):
+                cx, cy = col + dx, row + dy
+                if not (0 <= cx < columns and 0 <= cy < rows):
+                    continue
+                marked_cells.add((cx, cy))
+                x, y = ox + cx * unit + inset, oy + cy * unit + inset
+                footprint.append(f"M{x:.2f} {y:.2f}h{size:.2f}v{size:.2f}h-{size:.2f}z")
+        markers.append(f'<path d="{"".join(footprint)}"><title>{", ".join(names)}</title></path>')
     title = f"{label}: visited places in black"
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 450" role="img" aria-labelledby="title desc">
 <title id="title">{title}</title>
 <desc id="desc">{'; '.join(name for names in visited.values() for name in names)}. A pixelated land map without borders.</desc>
 <defs><pattern id="land-pixels" x="{ox:.6f}" y="{oy:.6f}" width="{unit:.6f}" height="{unit:.6f}" patternUnits="userSpaceOnUse"><rect x="{inset:.6f}" y="{inset:.6f}" width="{size:.6f}" height="{size:.6f}" fill="#c9c4b8"/></pattern></defs>
 <path fill="url(#land-pixels)" d="{''.join(cells)}"/>
-<g fill="#151515" stroke="#151515" stroke-width="1.25" paint-order="stroke" stroke-linejoin="miter">{''.join(markers)}</g>
+<g fill="#151515">{''.join(markers)}</g>
 </svg>
 '''
     (ASSETS / f"{key}.svg").write_text(svg, encoding="utf-8", newline="\n")
-    metadata[key] = {"places": sum(map(len, visited.values())), "blackPixels": len(visited), "landPixels": land_count}
+    metadata[key] = {"places": sum(map(len, visited.values())), "locationCells": len(visited), "blackPixels": len(marked_cells), "landPixels": land_count}
 print(json.dumps(metadata, indent=2))
