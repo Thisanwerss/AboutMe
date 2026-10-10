@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="paper-effects.css">
   <link rel="stylesheet" href="affiliations.css">
+  <link rel="stylesheet" href="research.css">
 </head>
 <body>
   <canvas id="signal-field" aria-hidden="true"></canvas>
@@ -72,23 +73,41 @@
     <section class="section" id="work">
       <div class="section-head">
         <p class="section-label">Research</p>
-        <h2>Learning-enabled robots with explicit physical structure.</h2>
+        <blockquote class="research-idea">
+          <h2>“The leap from model intelligence to robot intelligence is a leap in action generation.”</h2>
+          <footer>— My view, though I suspect many others share it.</footer>
+        </blockquote>
+        <p class="research-intro">My work asks how robots can turn richer observations into actions that are safe, physically feasible, and reusable across tasks.</p>
       </div>
       <div class="research-grid">
         <article class="research-card">
           <span>01</span>
-          <h3>Diffusion policy discovery</h3>
-          <p>Mining rare but valid behaviors from diffusion policies, repairing them with sampling-based trajectory optimization, and folding them back into training.</p>
+          <h3>Perception-augmented action policies</h3>
+          <p>I study how richer sensing can shape action generation, from thermal perception to multimodal vision-language-action (VLA) policies. My goal is to ground robot behavior in physical context, including conditions where visual observations alone are unreliable.</p>
+          <div class="research-related">
+            <span>Related work</span>
+            <a href="#paper-thermal">Safe-Night VLA</a>
+          </div>
         </article>
         <article class="research-card">
           <span>02</span>
-          <h3>Certified generative planning</h3>
-          <p>Combining flow matching, control barrier functions, convex optimization, and prescribed-time dynamics for constraint-aware robot motion generation.</p>
+          <h3>Safe action generation</h3>
+          <p>I combine diffusion and flow matching with control barrier functions and trajectory optimization. I work toward action generation that respects safety limits and robot dynamics, connecting learned behaviors to motions a robot can execute.</p>
+          <div class="research-related">
+            <span>Related work</span>
+            <a href="#paper-barrier">SafeFlow</a>
+            <a href="#paper-conflow">UniConFlow</a>
+            <a href="#paper-retarget">DynaRetarget</a>
+          </div>
         </article>
         <article class="research-card">
           <span>03</span>
-          <h3>Multimodal VLA systems</h3>
-          <p>Extending vision-language-action policies with physical sensing, thermal perception, and runtime safety filters for real-world manipulation.</p>
+          <h3>Multi-skill action policies</h3>
+          <p>I explore how generative policies can discover and learn diverse behaviors, including rare but valid actions. This motivates my work toward a growing repertoire of skills that robots can reuse and combine across tasks.</p>
+          <div class="research-related">
+            <span>Related work</span>
+            <a href="#paper-diffusion">Guided Discovery of New Behaviors</a>
+          </div>
         </article>
       </div>
     </section>
@@ -100,7 +119,7 @@
         <p class="section-note">Diffusion policies, flow matching, certified constraints, thermal VLA, and deployment-facing robot systems.</p>
       </div>
       <div class="publication-list">
-        <article class="publication-card featured" data-paper="diffusion">
+        <article class="publication-card featured" data-paper="diffusion" id="paper-diffusion">
           <div class="pub-meta">
             <img class="venue-logo" src="assets/venue-logos/corl-2026.png" alt="CoRL 2026 logo" width="1280" height="640" loading="lazy" decoding="async">
             <span>2026</span>
@@ -214,7 +233,7 @@
           </div>
         </article>
 
-        <article class="publication-card" data-paper="thermal">
+        <article class="publication-card" data-paper="thermal" id="paper-thermal">
           <div class="pub-meta">
             <img class="venue-logo" src="assets/venue-logos/iros-2026.png" alt="IROS 2026 Pittsburgh logo" width="2560" height="1662" loading="lazy" decoding="async">
             <span>2026</span>
@@ -229,7 +248,7 @@
           </div>
         </article>
 
-        <article class="publication-card" data-paper="retarget">
+        <article class="publication-card" data-paper="retarget" id="paper-retarget">
           <div class="pub-meta">
             <img class="venue-logo venue-logo-ras" src="assets/venue-logos/ieee-ras.webp" alt="IEEE Robotics and Automation Society logo" width="1274" height="469" loading="lazy" decoding="async">
             <span>2026</span>
@@ -244,7 +263,7 @@
           </div>
         </article>
 
-        <article class="publication-card" data-paper="conflow">
+        <article class="publication-card" data-paper="conflow" id="paper-conflow">
           <div class="pub-meta">
             <img class="venue-logo venue-logo-ras" src="assets/venue-logos/ieee-ras.webp" alt="IEEE Robotics and Automation Society logo" width="1274" height="469" loading="lazy" decoding="async">
             <span>2026</span>
@@ -259,7 +278,7 @@
           </div>
         </article>
 
-        <article class="publication-card" data-paper="barrier">
+        <article class="publication-card" data-paper="barrier" id="paper-barrier">
           <div class="pub-meta">
             <img class="venue-logo venue-logo-arxiv" src="assets/venue-logos/arxiv.svg" alt="arXiv logo" width="247" height="111" loading="lazy" decoding="async">
             <span>2025</span>
