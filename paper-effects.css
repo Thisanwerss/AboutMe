@@ -1,166 +1,107 @@
-/* Publication-only styling. Each illustration animates on hover or link focus. */
+/* Abstract, full-card publication backgrounds. */
 .publication-card[data-paper] {
   --paper-accent: 27, 110, 126;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 9rem;
-  gap: 0.8rem 1.2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.8rem;
   align-items: start;
   min-width: 0;
   padding: 1.2rem;
-  background: var(--panel);
-  transition: border-color 220ms ease, box-shadow 220ms ease;
+  isolation: isolate;
+  background: #faf7ee;
+  transition: border-color 250ms ease, box-shadow 250ms ease;
 }
-
-.publication-card[data-paper="thermal"] { --paper-accent: 169, 83, 68; }
+.publication-card[data-paper="thermal"] { --paper-accent: 157, 83, 132; }
 .publication-card[data-paper="retarget"] { --paper-accent: 65, 96, 137; }
 .publication-card[data-paper="conflow"] { --paper-accent: 67, 114, 104; }
 .publication-card[data-paper="barrier"] { --paper-accent: 32, 119, 91; }
-
 .publication-card[data-paper]:is(:hover, :focus-within) {
-  border-color: rgba(var(--paper-accent), 0.7);
+  border-color: rgba(var(--paper-accent), 0.65);
   box-shadow: 7px 7px 0 rgba(var(--paper-accent), 0.13);
 }
-
-.publication-card[data-paper] > :is(.pub-meta, h3, p, a) { grid-column: 1; }
+.publication-card[data-paper]::before { z-index: 2; pointer-events: none; }
+.publication-card[data-paper] > :is(.pub-meta, h3, p, a) { position: relative; z-index: 1; grid-column: 1; }
 .publication-card[data-paper] .pub-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem 0.6rem;
-  min-height: 3.2rem;
-  font-size: 0.62rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.6rem;
+  min-height: 3.2rem; color: var(--ink-2); font-size: 0.62rem;
 }
 .publication-card[data-paper] .venue-logo {
-  display: block;
-  width: 6.8rem;
-  height: 3.2rem;
-  object-fit: contain;
-  object-position: left center;
-  margin-right: 0.2rem;
+  display: block; width: 6.8rem; height: 3.2rem;
+  object-fit: contain; object-position: left center; margin-right: 0.2rem;
 }
 .publication-card[data-paper] .venue-logo-ras { width: 7.5rem; }
+.publication-card[data-paper] .venue-logo-arxiv { width: 5.8rem; }
 .publication-card[data-paper] h3 { font-size: clamp(1.15rem, 1.55vw, 1.4rem); line-height: 1.2; }
-.publication-card[data-paper] p { margin: 0; line-height: 1.5; }
+.publication-card[data-paper] p { margin: 0; color: var(--ink-2); line-height: 1.5; }
 .publication-card[data-paper] > a { justify-self: start; min-height: 2.5rem; margin-top: 0.1rem; }
 .publication-card[data-paper] > a:focus-visible { outline: 2px solid var(--ink-2); outline-offset: 4px; }
 
-.paper-visual {
-  grid-column: 2;
-  grid-row: 1 / 5;
-  align-self: stretch;
-  display: flex;
-  align-items: center;
-  min-height: 10rem;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid rgba(var(--paper-accent), 0.16);
-  color: rgb(var(--paper-accent));
-  background:
-    linear-gradient(rgba(var(--paper-accent), 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(var(--paper-accent), 0.035) 1px, transparent 1px),
-    rgba(250, 247, 238, 0.82);
-  background-size: 18px 18px, 18px 18px, auto;
-  pointer-events: none;
-  transition: border-color 220ms ease;
+/* Clip only the decoration, leaving keyboard focus outlines visible. */
+.paper-background { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; opacity: 0.18; transition: opacity 450ms ease; }
+.publication-card[data-paper]:is(:hover, :focus-within) .paper-background { opacity: 1; }
+.paper-background::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, rgba(250, 247, 238, 0.48), rgba(250, 247, 238, 0.12)); }
+.effect-layer { position: absolute; inset: -30%; }
+
+/* Diffusion: noisy dots settle into rows and stretch into continuous stripes. */
+.diffusion-field { position: absolute; inset: 0; background: linear-gradient(120deg, #e5eee8, #ebf3f0 55%, #d4e8ec); }
+.diffusion-field span {
+  position: absolute; left: var(--x); top: var(--y); width: 4px; height: 4px;
+  border-radius: 50%; background: rgba(27, 110, 126, 0.3);
+  transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)));
 }
-.publication-card[data-paper]:is(:hover, :focus-within) .paper-visual { border-color: rgba(var(--paper-accent), 0.4); }
-.paper-visual svg { display: block; width: 100%; height: auto; overflow: visible; }
-.paper-visual .art-guide { stroke: currentColor; stroke-width: 1; opacity: 0.2; }
-.paper-visual .art-cross { stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
-
-/* Guided discovery: scattered samples denoise into a newly discovered trajectory. */
-.diffusion-cloud circle {
-  fill: currentColor;
-  transform: translate(var(--scatter-x), var(--scatter-y));
-  animation: paper-denoise 2.8s ease-in-out infinite alternate;
-  animation-delay: var(--delay);
-}
-.discovery-path { stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; animation: paper-discover 2.8s ease-in-out infinite alternate; }
-.discovery-goal { stroke: currentColor; stroke-width: 1.2; animation: paper-discovery-goal 2.8s ease-in-out infinite alternate; transform-origin: 158px 30px; }
-@keyframes paper-denoise {
-  0%, 12% { transform: translate(var(--scatter-x), var(--scatter-y)); opacity: 0.45; }
-  75%, 100% { transform: translate(0, 0); opacity: 1; }
-}
-@keyframes paper-discover { 0%, 12% { stroke-dashoffset: 100; } 75%, 100% { stroke-dashoffset: 0; } }
-@keyframes paper-discovery-goal { 0%, 60% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.35); opacity: 1; } }
-
-/* Safe-Night VLA: a thermal scan reveals a warm target below the gripper. */
-.thermal-frame { stroke: currentColor; stroke-width: 1.2; opacity: 0.5; }
-.thermal-heat { transform-origin: 92px 96px; animation: paper-thermal-heat 2.4s ease-in-out infinite; }
-.thermal-contour { stroke: #c46d68; stroke-width: 1; opacity: 0.55; }
-.thermal-target { stroke: #d39746; stroke-width: 1.2; stroke-dasharray: 5 4; animation: paper-thermal-lock 2.8s ease-in-out infinite; }
-.thermal-gripper { stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: paper-thermal-grasp 2.8s ease-in-out infinite; }
-.thermal-scan { stroke: #d79d4f; stroke-width: 1; animation: paper-thermal-scan 2.8s linear infinite; }
-@keyframes paper-thermal-heat { 0%, 100% { transform: scale(0.85); opacity: 0.65; } 50% { transform: scale(1.1); opacity: 1; } }
-@keyframes paper-thermal-scan { 0% { transform: translateY(-20px); opacity: 0; } 15%, 75% { opacity: 1; } 100% { transform: translateY(98px); opacity: 0; } }
-@keyframes paper-thermal-lock { 0%, 20%, 100% { opacity: 0.3; } 45%, 80% { opacity: 1; } }
-@keyframes paper-thermal-grasp { 0%, 100% { transform: translateY(0); } 45%, 65% { transform: translateY(10px); } }
-
-/* DynaRetarget: the robot follows the source skeleton's joint motion. */
-.source-skeleton { stroke: #87939e; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.robot-skeleton { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.retarget-transfer { stroke: currentColor; stroke-width: 1.4; stroke-dasharray: 3 4; animation: paper-retarget-transfer 1.2s linear infinite; }
-.source-arm { transform-origin: 45px 58px; animation: paper-retarget-arm 2s ease-in-out infinite; }
-.robot-arm { transform-origin: 132px 60px; animation: paper-retarget-arm 2s ease-in-out infinite; }
-.source-leg-left { transform-origin: 45px 84px; animation: paper-retarget-step 2s ease-in-out infinite; }
-.source-leg-right { transform-origin: 45px 84px; animation: paper-retarget-step-back 2s ease-in-out infinite; }
-.robot-leg-left { transform-origin: 127px 85px; animation: paper-retarget-step 2s ease-in-out infinite; }
-.robot-leg-right { transform-origin: 137px 85px; animation: paper-retarget-step-back 2s ease-in-out infinite; }
-@keyframes paper-retarget-arm { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-12deg); } }
-@keyframes paper-retarget-step { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(18deg); } }
-@keyframes paper-retarget-step-back { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-16deg); } }
-@keyframes paper-retarget-transfer { to { stroke-dashoffset: -28; } }
-
-/* UniConFlow: three streams transport samples through a constrained corridor. */
-.flow-boundary { stroke: currentColor; stroke-width: 1.4; stroke-dasharray: 4 4; opacity: 0.65; }
-.flow-stream { stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 12; animation: paper-flow-transport 2s linear infinite; }
-.flow-stream-b { animation-duration: 1.5s; }
-.flow-stream-c { animation-duration: 2.5s; }
-.flow-vectors { stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; opacity: 0.65; }
-.flow-start { fill: var(--paper-soft); stroke: currentColor; stroke-width: 1.5; }
-.flow-goal { fill: currentColor; fill-opacity: 0.1; stroke: currentColor; stroke-width: 1.5; animation: paper-flow-goal 2s ease-in-out infinite; }
-@keyframes paper-flow-transport { to { stroke-dashoffset: -84; } }
-@keyframes paper-flow-goal { 0%, 100% { fill-opacity: 0.1; } 50% { fill-opacity: 0.4; } }
-
-/* SafeFlow: the agent bends around a control-barrier safety region. */
-.barrier-unsafe { stroke: #b56b66; stroke-width: 1; stroke-dasharray: 3 5; opacity: 0.3; }
-.barrier-obstacle { fill: currentColor; fill-opacity: 0.07; stroke: currentColor; stroke-opacity: 0.3; }
-.barrier-ring { stroke: currentColor; stroke-width: 1.2; stroke-dasharray: 4 3; transform-origin: 90px 100px; animation: paper-barrier-field 2s ease-in-out infinite; }
-.barrier-shield { stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.barrier-safe-path { stroke: currentColor; stroke-width: 1.5; opacity: 0.5; }
-.barrier-agent { fill: currentColor; stroke: var(--paper-soft); stroke-width: 2; transform: translate(18px, 110px); animation: paper-barrier-route 3.6s linear infinite; }
-.barrier-goal { stroke: currentColor; stroke-width: 1.2; }
-@keyframes paper-barrier-field { 0%, 100% { transform: scale(1); opacity: 0.45; } 50% { transform: scale(1.12); opacity: 0.9; } }
-@keyframes paper-barrier-route {
-  0%, 8% { transform: translate(18px, 110px); }
-  25% { transform: translate(40px, 78px); }
-  40% { transform: translate(60px, 48px); }
-  50% { transform: translate(91px, 37px); }
-  65% { transform: translate(122px, 58px); }
-  82% { transform: translate(144px, 97px); }
-  95%, 100% { transform: translate(158px, 110px); }
+.publication-card[data-paper="diffusion"]:is(:hover, :focus-within) .diffusion-field span { animation: paper-dots-to-stripes 5.4s ease-in-out infinite; animation-delay: var(--lag); }
+@keyframes paper-dots-to-stripes {
+  0%, 12%, 100% { width: 4px; height: 4px; border-radius: 50%; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))); }
+  42% { width: 4px; height: 4px; border-radius: 50%; transform: translate(-50%, -50%); }
+  66%, 82% { width: calc(100% / 14 + 2px); height: 2px; border-radius: 1px; transform: translate(-50%, -50%); }
 }
 
-/* The diagrams are static until the reader interacts with their paper. */
-.publication-card[data-paper] .paper-visual * { animation-play-state: paused; }
-.publication-card[data-paper]:is(:hover, :focus-within) .paper-visual * { animation-play-state: running; }
-
-@media (max-width: 1100px) and (min-width: 981px) {
-  .publication-card[data-paper] { grid-template-columns: minmax(0, 1fr) 7.2rem; gap: 0.8rem; padding: 1rem; }
+/* Thermal: drifting spectral color fields behind the whole text surface. */
+[data-paper="thermal"] .layer-a {
+  background: radial-gradient(ellipse at 22% 25%, #edb0cd 0, transparent 48%), radial-gradient(ellipse at 78% 20%, #afc4f0 0, transparent 48%), radial-gradient(ellipse at 70% 80%, #f3d68e 0, transparent 45%), radial-gradient(ellipse at 25% 85%, #a5ddd8 0, transparent 50%), #e9ddee;
+  filter: blur(22px);
 }
+[data-paper="thermal"] .layer-b { background: conic-gradient(from 30deg at 50% 50%, #f3dc9d, #efb0c4, #bcb5ed, #a4d9df, #f3dc9d); opacity: 0.45; filter: blur(38px); mix-blend-mode: soft-light; }
+[data-paper="thermal"]:is(:hover, :focus-within) .layer-a { animation: paper-thermal-spectrum 8s ease-in-out infinite alternate; }
+[data-paper="thermal"]:is(:hover, :focus-within) .layer-b { animation: paper-iridescence 12s linear infinite; }
+@keyframes paper-thermal-spectrum { from { transform: translate(-8%, -7%) rotate(-12deg) scale(1.05); } to { transform: translate(8%, 7%) rotate(12deg) scale(1.18); } }
+@keyframes paper-iridescence { to { transform: rotate(360deg) scale(1.2); } }
+
+/* Retargeting: offset coordinate textures synchronize into a shared grid. */
+[data-paper="retarget"] .paper-background { background: linear-gradient(125deg, #e5eaf4, #eee8f3); }
+[data-paper="retarget"] .effect-layer { background: linear-gradient(rgba(65, 96, 137, 0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(65, 96, 137, 0.18) 1px, transparent 1px); background-size: 38px 38px; }
+[data-paper="retarget"] .layer-b { background-image: linear-gradient(rgba(145, 100, 157, 0.21) 1px, transparent 1px), linear-gradient(90deg, rgba(145, 100, 157, 0.21) 1px, transparent 1px); transform: translate(17px, 11px) skewX(-7deg) rotate(3deg); }
+[data-paper="retarget"]:is(:hover, :focus-within) .layer-a { animation: paper-grid-drift 6s ease-in-out infinite alternate; }
+[data-paper="retarget"]:is(:hover, :focus-within) .layer-b { animation: paper-grid-align 6s ease-in-out infinite alternate; }
+@keyframes paper-grid-drift { to { transform: translate(19px, 19px); } }
+@keyframes paper-grid-align { 0%, 15% { transform: translate(17px, 11px) skewX(-7deg) rotate(3deg); } 75%, 100% { transform: translate(19px, 19px) skewX(0) rotate(0); } }
+
+/* Constrained flow: curved bands stream through a softly bounded field. */
+[data-paper="conflow"] .paper-background { background: linear-gradient(130deg, #e4eee8, #e0eeee); }
+[data-paper="conflow"] .layer-a { inset: -70% -30%; background: repeating-radial-gradient(ellipse at 15% 0%, transparent 0 26px, rgba(67, 114, 104, 0.2) 27px 29px, transparent 30px 55px); transform: rotate(-14deg); }
+[data-paper="conflow"] .layer-b { background: linear-gradient(115deg, transparent 25%, rgba(139, 185, 167, 0.5) 40%, rgba(157, 201, 209, 0.45) 50%, transparent 65%); filter: blur(18px); }
+[data-paper="conflow"]:is(:hover, :focus-within) .layer-a { animation: paper-flow-bands 7s ease-in-out infinite alternate; }
+[data-paper="conflow"]:is(:hover, :focus-within) .layer-b { animation: paper-flow-wash 6s ease-in-out infinite alternate; }
+@keyframes paper-flow-bands { to { transform: translate(8%, 6%) rotate(-8deg) scale(1.08); } }
+@keyframes paper-flow-wash { from { transform: translateX(-25%); } to { transform: translateX(25%); } }
+
+/* Barrier functions: nested contours breathe as an abstract protective field. */
+[data-paper="barrier"] .paper-background { background: linear-gradient(125deg, #e4eee5, #e2eee7); }
+[data-paper="barrier"] .layer-a { inset: -55%; background: repeating-radial-gradient(ellipse at 75% 60%, transparent 0 24px, rgba(32, 119, 91, 0.18) 25px 26px, transparent 27px 48px); }
+[data-paper="barrier"] .layer-b { background: radial-gradient(ellipse at 75% 60%, rgba(140, 199, 166, 0.55), transparent 60%); }
+[data-paper="barrier"]:is(:hover, :focus-within) .layer-a { animation: paper-barrier-breathe 4.8s ease-in-out infinite alternate; }
+[data-paper="barrier"]:is(:hover, :focus-within) .layer-b { animation: paper-barrier-glow 4.8s ease-in-out infinite alternate; }
+@keyframes paper-barrier-breathe { from { transform: scale(0.88); } to { transform: scale(1.12); } }
+@keyframes paper-barrier-glow { from { opacity: 0.3; transform: translate(-4%, -3%); } to { opacity: 0.9; transform: translate(4%, 3%); } }
+
 @media (max-width: 640px) {
-  .publication-card[data-paper] { grid-template-columns: minmax(0, 1fr); gap: 0.85rem; padding: 1rem; }
+  .publication-card[data-paper] { gap: 0.85rem; padding: 1rem; }
   .publication-card[data-paper] .pub-meta { gap: 0.4rem 0.7rem; }
   .publication-card[data-paper] h3 { font-size: 1.3rem; }
-  .publication-card[data-paper] .paper-visual { grid-column: 1; grid-row: 5; min-height: 8rem; height: 8rem; justify-content: center; }
-  .paper-visual svg { width: auto; height: 100%; }
   .portrait-meta { gap: 0.25rem; }
 }
 @media (hover: none), (prefers-reduced-motion: reduce) {
-  .publication-card[data-paper] .paper-visual * { animation: none !important; }
-  .publication-card[data-paper] { transition: none; }
-  .paper-visual { transition: none; }
-  .discovery-path { stroke-dashoffset: 0; }
-  .diffusion-cloud circle { transform: none; opacity: 0.8; }
-  .thermal-scan { opacity: 0; }
+  .publication-card[data-paper] .paper-background * { animation: none !important; }
+  .publication-card[data-paper], .paper-background { transition: none; }
+  .publication-card[data-paper] .paper-background { opacity: 0.22; }
 }
