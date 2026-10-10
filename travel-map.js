@@ -7,15 +7,15 @@
   const views = {
     world: {
       label: "World · 23 places",
-      alt: "Pixel world map with visited places marked in black across China, Japan, Europe, and Pittsburgh.",
+      alt: "Pixel world map with black pixel stamps marking 23 visited places.",
     },
     europe: {
       label: "Europe · 12 places",
-      alt: "Pixel map of Europe with black squares for Munich, Zurich, Florence, Bologna, Venice, Mallorca, Malta, Karlsruhe, Heidelberg, Nuremberg, Mannheim, and Stuttgart.",
+      alt: "Pixel map of Europe with black squares marking 12 visited places.",
     },
     "east-asia": {
       label: "East Asia · 10 places",
-      alt: "Pixel map of East Asia with black squares for Shanghai, Wuxi, Suzhou, Hangzhou, Chengdu, Chongqing, Beijing, Qinhuangdao, Zhenjiang, and Tokyo.",
+      alt: "Pixel map of East Asia with black squares marking 10 visited places.",
     },
   };
 

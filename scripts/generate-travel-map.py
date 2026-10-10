@@ -105,11 +105,12 @@ for key, (bounds, columns, label) in VIEWS.items():
                 marked_cells.add((cx, cy))
                 x, y = ox + cx * unit + inset, oy + cy * unit + inset
                 footprint.append(f"M{x:.2f} {y:.2f}h{size:.2f}v{size:.2f}h-{size:.2f}z")
-        markers.append(f'<path d="{"".join(footprint)}"><title>{", ".join(names)}</title></path>')
+        markers.append(f'<path d="{"".join(footprint)}"/>')
+    place_count = sum(map(len, visited.values()))
     title = f"{label}: visited places in black"
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 450" role="img" aria-labelledby="title desc">
 <title id="title">{title}</title>
-<desc id="desc">{'; '.join(name for names in visited.values() for name in names)}. A pixelated land map without borders.</desc>
+<desc id="desc">Pixelated land map without borders. Black pixel stamps mark {place_count} visited places.</desc>
 <defs><pattern id="land-pixels" x="{ox:.6f}" y="{oy:.6f}" width="{unit:.6f}" height="{unit:.6f}" patternUnits="userSpaceOnUse"><rect x="{inset:.6f}" y="{inset:.6f}" width="{size:.6f}" height="{size:.6f}" fill="#c9c4b8"/></pattern></defs>
 <path fill="url(#land-pixels)" d="{''.join(cells)}"/>
 <g fill="#151515">{''.join(markers)}</g>
