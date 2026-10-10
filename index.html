@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="affiliations.css">
   <link rel="stylesheet" href="research.css">
   <link rel="stylesheet" href="experience.css">
+  <link rel="stylesheet" href="profile-contact.css">
 </head>
 <body>
   <canvas id="signal-field" aria-hidden="true"></canvas>
@@ -35,27 +36,18 @@
   </header>
 
   <main id="top">
-    <section class="hero-section">
+    <section class="hero-section profile-hero" aria-labelledby="profile-name">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Technical University of Munich · ATARI Lab</p>
-          <h1 class="serif-title">Dian Yu</h1>
-          <p class="lead">
-            PhD candidate working on reliable robot learning, safety-critical control, and foundation models for physical robot systems.
-          </p>
-          <p class="profile-summary">
-            My research sits between generative action policies and explicit physical structure: diffusion and flow-matching models, control barrier functions, trajectory optimization, and hardware deployment.
-          </p>
-          <div class="lab-readout" aria-label="Research readout">
-            <div><span>role</span><strong>PhD Candidate</strong></div>
-            <div><span>focus</span><strong>robot learning under constraints</strong></div>
-            <div><span>stack</span><strong>diffusion · flow matching · CBF · MPC</strong></div>
-          </div>
-          <div class="hero-actions">
+          <p class="eyebrow">PhD Candidate · Robotics</p>
+          <h1 class="serif-title" id="profile-name">Dian Yu</h1>
+          <p class="profile-affiliation">Technical University of Munich<span>ATARI Lab · MIRMI</span></p>
+          <p class="profile-focus">Generative action policies and safe robot control.</p>
+          <nav class="hero-actions" aria-label="Profile links">
             <a class="primary-action" href="mailto:go69joc@mytum.de">Email</a>
-            <a class="secondary-action" href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+            <a class="secondary-action" href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
             <a class="secondary-action" href="https://linkedin.com/in/dian-yu-51b6652ab" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
+          </nav>
         </div>
 
         <aside class="portrait-panel" aria-label="Portrait of Dian Yu">
@@ -68,7 +60,6 @@
           </div>
         </aside>
       </div>
-      <div class="hero-rail" aria-hidden="true">RCI / CONTROL / VLA / SIM2REAL</div>
     </section>
 
     <section class="section" id="work">
@@ -449,19 +440,28 @@
       </div>
     </section>
 
-    <section class="contact-section" id="contact">
-      <p class="section-label">Contact</p>
-      <h2>Open to research conversations around robot learning, safety, and deployment.</h2>
-      <div class="contact-links">
-        <a href="mailto:go69joc@mytum.de">go69joc@mytum.de</a>
-        <a href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://linkedin.com/in/dian-yu-51b6652ab" target="_blank" rel="noopener">LinkedIn</a>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-heading">
+        <p class="section-label">Contact</p>
+        <h2 id="contact-title">Let’s talk robotics.</h2>
+      </div>
+      <div class="contact-details">
+        <a class="contact-email" href="mailto:go69joc@mytum.de" aria-label="Email Dian Yu at go69joc@mytum.de">
+          <span class="contact-kind">Email</span>
+          <span class="contact-address">go69joc@mytum.de</span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <nav class="contact-profiles" aria-label="Contact profiles">
+          <a href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
+          <a href="https://linkedin.com/in/dian-yu-51b6652ab" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+        </nav>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>© 2026 Dian Yu. Built as a lightweight static personal page.</p>
+  <footer class="footer profile-footer">
+    <p>© 2026 Dian Yu</p>
+    <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
   </footer>
 
   <aside class="bottom-pets" id="bottom-pets" aria-hidden="true">
