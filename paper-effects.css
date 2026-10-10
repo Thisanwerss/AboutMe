@@ -12,6 +12,7 @@
   transition: border-color 250ms ease, box-shadow 250ms ease;
 }
 .publication-card[data-paper="thermal"] { --paper-accent: 157, 83, 132; }
+.publication-card[data-paper="pacdp"] { --paper-accent: 139, 104, 62; }
 .publication-card[data-paper="retarget"] { --paper-accent: 65, 96, 137; }
 .publication-card[data-paper="conflow"] { --paper-accent: 67, 114, 104; }
 .publication-card[data-paper="barrier"] { --paper-accent: 32, 119, 91; }
@@ -55,6 +56,23 @@
   42% { width: 4px; height: 4px; border-radius: 50%; transform: translate(-50%, -50%); }
   66%, 82% { width: calc(100% / 14 + 2px); height: 2px; border-radius: 1px; transform: translate(-50%, -50%); }
 }
+
+/* PAC-Bayes: diffuse probability textures concentrate into a softer, tighter cloud. */
+[data-paper="pacdp"] .paper-background { background: linear-gradient(120deg, #f1e7d5, #eee7e4 55%, #e9e3ed); }
+[data-paper="pacdp"] .layer-a {
+  background: radial-gradient(ellipse at 30% 35%, rgba(188, 145, 77, 0.42), transparent 42%), radial-gradient(ellipse at 72% 60%, rgba(148, 123, 170, 0.38), transparent 45%), radial-gradient(ellipse at 48% 70%, rgba(212, 176, 113, 0.45), transparent 38%);
+  filter: blur(20px);
+  transform: scaleX(1.25);
+}
+[data-paper="pacdp"] .layer-b {
+  background: radial-gradient(circle, rgba(139, 104, 62, 0.3) 0 1px, transparent 1.5px) 0 0 / 13px 17px, radial-gradient(circle, rgba(130, 107, 153, 0.28) 0 1px, transparent 1.5px) 6px 9px / 19px 23px;
+  mask-image: radial-gradient(ellipse at 50% 50%, #000, transparent 65%);
+  transform: scaleX(1.2) translateX(-3%);
+}
+[data-paper="pacdp"]:is(:hover, :focus-within) .layer-a { animation: paper-pac-cloud 6.4s ease-in-out infinite alternate; }
+[data-paper="pacdp"]:is(:hover, :focus-within) .layer-b { animation: paper-pac-concentrate 6.4s ease-in-out infinite alternate; }
+@keyframes paper-pac-cloud { from { transform: scaleX(1.25); opacity: 0.6; } to { transform: scaleX(0.65); opacity: 1; } }
+@keyframes paper-pac-concentrate { from { transform: scaleX(1.2) translateX(-3%); opacity: 0.4; } to { transform: scaleX(0.7) translateX(6%); opacity: 0.85; } }
 
 /* Thermal: drifting spectral color fields behind the whole text surface. */
 [data-paper="thermal"] .layer-a {
