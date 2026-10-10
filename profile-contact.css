@@ -64,9 +64,9 @@
 
 #contact {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  grid-template-columns: minmax(0, 1fr) clamp(4.5rem, 8vw, 7rem) minmax(0, 1.15fr);
   align-items: start;
-  gap: 2rem 4rem;
+  gap: 1.5rem;
   padding: clamp(3rem, 6vw, 5rem) 0;
   scroll-margin-top: 5rem;
 }
@@ -81,6 +81,23 @@
 }
 
 .contact-details { min-width: 0; }
+
+.contact-nudge {
+  width: 100%;
+  height: 5.4rem;
+  color: var(--ink-2);
+  pointer-events: none;
+}
+
+.contact-nudge svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.contact-nudge g { transform-origin: center; animation: contact-nudge-bounce 1.5s ease-in-out infinite; }
+
+@keyframes contact-nudge-bounce {
+  0%, 35%, 65%, 90%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(10px, -5px) rotate(-3deg); }
+  52% { transform: translate(7px, -3px) rotate(-2deg); }
+  80% { transform: translate(4px, -2px) rotate(-1deg); }
+}
 
 .contact-email {
   display: grid;
@@ -137,8 +154,14 @@
   .profile-hero .hero-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2rem; }
   .profile-hero .serif-title { font-size: clamp(3.5rem, 9vw, 5rem); }
   .profile-hero .portrait-meta { font-size: 0.56rem; }
-  #contact { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
-  #contact h2 { max-width: none; }
+  #contact { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+  #contact h2 { max-width: 14em; }
+  .contact-nudge { width: 4rem; height: 4rem; margin-left: 2rem; }
+  .contact-nudge svg { transform: rotate(90deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-nudge g { animation: none; }
 }
 
 @media (max-width: 640px) {
