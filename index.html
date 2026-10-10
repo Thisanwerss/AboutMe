@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="paper-effects.css">
   <link rel="stylesheet" href="affiliations.css">
   <link rel="stylesheet" href="research.css">
+  <link rel="stylesheet" href="experience.css">
 </head>
 <body>
   <canvas id="signal-field" aria-hidden="true"></canvas>
@@ -299,8 +300,12 @@
       <div class="section-head sticky-head">
         <p class="section-label">Experience</p>
         <h2>Research, systems, deployment.</h2>
+        <div class="experience-tabs" role="tablist" aria-label="Experience duration">
+          <button type="button" role="tab" id="experience-tab-longer" aria-controls="experience-panel-longer" aria-selected="true" tabindex="0">Mid &amp; long-term</button>
+          <button type="button" role="tab" id="experience-tab-short" aria-controls="experience-panel-short" aria-selected="false" tabindex="-1">Short-term</button>
+        </div>
       </div>
-      <div class="timeline">
+      <div class="timeline" id="experience-panel-longer" role="tabpanel" aria-labelledby="experience-tab-longer" tabindex="0">
         <article class="timeline-item">
           <div class="experience-meta">
             <div class="affiliation-logos">
@@ -359,6 +364,34 @@
           </div>
           <h3>Siemens Healthineers · Shanghai</h3>
           <p>Connecting wires together.</p>
+        </article>
+      </div>
+      <div class="timeline" id="experience-panel-short" role="tabpanel" aria-labelledby="experience-tab-short" tabindex="0" hidden>
+        <article class="timeline-item hackathon-card">
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-eth" src="assets/affiliation-logos/eth-zurich.svg" alt="ETH Zurich logo" width="120" height="20" loading="lazy" decoding="async">
+              <img class="affiliation-logo affiliation-logo-ethrc" src="assets/affiliation-logos/ethrc.webp" alt="ETH Robotics Club logo" width="480" height="99" loading="lazy" decoding="async">
+            </div>
+            <p class="project-location">Zurich, Switzerland</p>
+          </div>
+          <h3>DreamMotion · ETHRC Robotics Hackathon</h3>
+          <p>Real-time conversation and physical interaction with a humanoid robot.</p>
+          <a class="project-repo" href="https://github.com/maedmatt/DreamMotion" aria-label="View DreamMotion repository on GitHub" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a>
+          <figure class="hackathon-photo">
+            <img src="assets/projects/dreammotion-hackathon.webp" alt="Team interacting with a humanoid robot at the ETHRC Robotics Hackathon in Zurich." width="1280" height="853" loading="lazy" decoding="async">
+          </figure>
+        </article>
+        <article class="timeline-item hackathon-card">
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-lerobot" src="assets/affiliation-logos/lerobot.webp" alt="LeRobot logo" width="480" height="156" loading="lazy" decoding="async">
+            </div>
+            <p class="project-location">Munich, Germany</p>
+          </div>
+          <h3>LeThrower · LeRobot Hackathon</h3>
+          <p>Generative robot throwing with reinforcement learning and flow matching.</p>
+          <a class="project-repo" href="https://github.com/Chiniklas/LeThrower" aria-label="View LeThrower repository on GitHub" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a>
         </article>
       </div>
     </section>
@@ -440,5 +473,6 @@
   </aside>
 
   <script src="script.js"></script>
+  <script src="experience.js"></script>
 </body>
 </html>

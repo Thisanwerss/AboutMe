@@ -10,9 +10,14 @@ Retrieved on October 11, 2026. Logos are stored locally and displayed with their
 | `dash.png` | [TUM DASH website](https://tumdash.com/), [logo image](https://tumdash.com/wp-content/uploads/2022/11/FinalLogo-1-e1668950715553.png) | Student Subteam Lead |
 | `bosch.svg` | [Bosch Global](https://www.bosch.com/), unmodified SVG extracted from the site's header wordmark | Working Student |
 | `siemens-healthineers.svg` | [Siemens Healthineers corporate website](https://www.siemens-healthineers.com/), unmodified SVG decoded from the header logo in its [official stylesheet](https://www.siemens-healthineers.com/assets-corporate/index.49c64badf8f8bfd4462d.css) | Siemens Healthineers, Shanghai |
+| `eth-zurich.svg` | [ETH Zurich homepage](https://ethz.ch/en.html), unmodified SVG extracted from the header wordmark | DreamMotion, ETHRC Robotics Hackathon |
+| `ethrc.webp` | [ETH Robotics Club](https://www.ethrobotics.ch/), [official black wordmark](https://cdn.prod.website-files.com/684da9878de6aa970ea1187c/68c3323008566ba41500edd3_ETHRC_primaryblack.png) | DreamMotion, ETHRC Robotics Hackathon |
+| `lerobot.webp` | [Official LeRobot brand assets](https://huggingface.co/spaces/lerobot/LeRobot-branding), [orange logo badge](https://huggingface.co/spaces/lerobot/LeRobot-branding/resolve/main/images/LeRobot%20Logos/lerobot_logo.png) | LeThrower, LeRobot Hackathon |
 | `haw-hamburg.webp` | [HAW Hamburg Corporate Design](https://www.haw-hamburg.de/presse-und-hochschulkommunikation/corporate-design/), [official RGB logo](https://www.haw-hamburg.de/fileadmin/zentrale_PDF/Zentrale_Dokumente/Corporate_Design/HAW_Marke_RGB_300dpi.jpg) | HAW Hamburg / USST education |
 | `usst.webp` | [USST identity page](https://www.usst.edu.cn/slbs/list.htm), [official emblem](https://www.usst.edu.cn/_upload/article/images/28/de/8bd2ff3e43f8912b073f190bda2a/5e561887-f5ff-4c59-8be4-a354a558a31d.jpg) | HAW Hamburg / USST education |
 
 HAW Hamburg (© HAW Hamburg) and USST images are resized and encoded as WebP for web delivery. Excess white margins around the USST emblem are trimmed with clear space retained; the emblem itself is unchanged.
+
+ETHRC and LeRobot PNG assets are resized proportionally and encoded as lossless WebP, preserving transparency and logo artwork.
 
 Munitics intentionally remains text-only, as requested.

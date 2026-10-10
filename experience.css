@@ -1,0 +1,91 @@
+#experience {
+  scroll-margin-top: 5.3rem;
+}
+
+#experience .experience-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+#experience .experience-tabs button {
+  min-height: 2.75rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  color: var(--ink-2);
+  background: var(--panel);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#experience .experience-tabs button:hover {
+  background: var(--blue-soft);
+}
+
+#experience .experience-tabs button[aria-selected="true"] {
+  color: var(--paper-soft);
+  background: var(--ink);
+}
+
+#experience .experience-tabs button:focus-visible,
+#experience [role="tabpanel"]:focus-visible,
+#experience .project-repo:focus-visible {
+  outline: 2px solid var(--ink-2);
+  outline-offset: 4px;
+}
+
+#experience [role="tabpanel"] {
+  min-width: 0;
+}
+
+#experience [hidden] {
+  display: none;
+}
+
+#experience .affiliation-logo-eth { width: 7rem; }
+#experience .affiliation-logo-ethrc { width: 7.5rem; }
+#experience .affiliation-logo-lerobot { width: 8.5rem; height: auto; }
+
+#experience .project-location {
+  margin: 0;
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#experience .project-repo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.75rem;
+  margin-top: 0.8rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#experience .project-repo:hover {
+  background: var(--blue-soft);
+}
+
+#experience .hackathon-photo {
+  margin: 1rem 0 0;
+}
+
+#experience .hackathon-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
