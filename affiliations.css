@@ -1,4 +1,4 @@
-/* Experience affiliation marks retain their original proportions and colors. */
+/* Affiliation marks retain their original proportions and colors. */
 #experience .experience-meta {
   display: flex;
   flex-wrap: wrap;
@@ -7,7 +7,8 @@
   gap: 0.8rem 1rem;
   margin-bottom: 0.85rem;
 }
-#experience .affiliation-logos {
+#experience .affiliation-logos,
+#education .affiliation-logos {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -16,7 +17,8 @@
   max-width: 100%;
   min-height: 2.8rem;
 }
-#experience .affiliation-logo {
+#experience .affiliation-logo,
+#education .affiliation-logo {
   display: block;
   flex: 0 0 auto;
   width: auto;
@@ -24,13 +26,20 @@
   max-width: 100%;
   object-fit: contain;
 }
-#experience .affiliation-logo-tum { width: 4.3rem; padding: 0.35rem; background: #0065bd; }
+#experience .affiliation-logo-tum,
+#education .affiliation-logo-tum { width: 4.3rem; padding: 0.35rem; background: #0065bd; }
 #experience .affiliation-logo-atari { width: 2.8rem; height: 2.8rem; }
 #experience .affiliation-logo-mirmi { width: 6rem; }
 #experience .affiliation-logo-dash { width: 7.5rem; }
 #experience .affiliation-logo-bosch { width: 8.3rem; }
 #experience .experience-meta time { flex: 0 1 auto; }
+#education { scroll-margin-top: 5.5rem; }
+#education .affiliation-logo-haw { width: 7.5rem; height: auto; }
+#education .affiliation-logo-usst { width: 2.8rem; height: 2.8rem; }
+#education .education-school + .education-school { margin-top: 1.5rem; }
+#education .education-school h3 { margin-top: 0.75rem; }
 @media (max-width: 640px) {
   #experience .experience-meta { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
-  #experience .affiliation-logos { gap: 0.7rem; }
+  #experience .affiliation-logos,
+  #education .affiliation-logos { gap: 0.7rem; }
 }
