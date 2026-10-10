@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="paper-effects.css">
 </head>
 <body>
   <canvas id="signal-field" aria-hidden="true"></canvas>
@@ -59,8 +60,8 @@
             <img src="portrait.jpg" alt="Dian Yu portrait">
           </div>
           <div class="portrait-meta">
-            <span>Munich, Germany</span>
-            <span>Reliable Robot Learning</span>
+            <span>Heidelberg, Germany</span>
+            <span>Shot by Yuna</span>
           </div>
         </aside>
       </div>
@@ -98,47 +99,134 @@
         <p class="section-note">Diffusion policies, flow matching, certified constraints, thermal VLA, and deployment-facing robot systems.</p>
       </div>
       <div class="publication-list">
-        <article class="publication-card featured">
+        <article class="publication-card featured" data-paper="diffusion">
           <div class="pub-meta">
+            <img class="venue-logo" src="assets/venue-logos/corl-2026.png" alt="CoRL 2026 logo" width="1280" height="640" loading="lazy" decoding="async">
             <span>2026</span>
             <span>CoRL 2026</span>
           </div>
           <h3>Guided Discovery of New Behaviors using Diffusion Policies</h3>
           <p><strong>Dian Yu</strong>, Sebastian Sanokowski, Majid Khadiv</p>
           <a href="https://arxiv.org/abs/2606.08743" target="_blank" rel="noopener">arXiv:2606.08743</a>
+          <div class="paper-visual" aria-hidden="true">
+            <svg viewBox="0 0 180 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="art-guide" d="M18 129C51 119 47 92 82 88S114 43 158 30M18 129C51 119 58 64 91 63S130 83 159 69M18 129C65 125 86 132 158 118"/>
+              <path class="discovery-path" d="M18 129C51 119 47 92 82 88S114 43 158 30" pathLength="100"/>
+              <g class="diffusion-cloud">
+                <circle cx="18" cy="129" r="3" style="--scatter-x:12px;--scatter-y:-28px;--delay:0s"/>
+                <circle cx="36" cy="117" r="2.5" style="--scatter-x:-17px;--scatter-y:-43px;--delay:-0.2s"/>
+                <circle cx="49" cy="101" r="3" style="--scatter-x:-24px;--scatter-y:24px;--delay:-0.1s"/>
+                <circle cx="63" cy="92" r="2.5" style="--scatter-x:14px;--scatter-y:-49px;--delay:-0.3s"/>
+                <circle cx="82" cy="88" r="3" style="--scatter-x:14px;--scatter-y:35px;--delay:-0.2s"/>
+                <circle cx="101" cy="77" r="2.5" style="--scatter-x:-30px;--scatter-y:-42px;--delay:0s"/>
+                <circle cx="114" cy="60" r="3" style="--scatter-x:29px;--scatter-y:33px;--delay:-0.3s"/>
+                <circle cx="132" cy="42" r="2.5" style="--scatter-x:-9px;--scatter-y:58px;--delay:-0.1s"/>
+                <circle cx="158" cy="30" r="3" style="--scatter-x:-14px;--scatter-y:24px;--delay:-0.2s"/>
+              </g>
+              <circle class="discovery-goal" cx="158" cy="30" r="8"/>
+              <path class="art-cross" d="M154 30h8m-4-4v8"/>
+            </svg>
+          </div>
         </article>
 
-        <article class="publication-card">
+        <article class="publication-card" data-paper="thermal">
           <div class="pub-meta">
+            <img class="venue-logo" src="assets/venue-logos/iros-2026.png" alt="IROS 2026 Pittsburgh logo" width="2560" height="1662" loading="lazy" decoding="async">
             <span>2026</span>
             <span>IROS 2026</span>
           </div>
           <h3>Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation</h3>
           <p><strong>Dian Yu*</strong>, Qingchuan Zhou*, Bingkun Huang, Majid Khadiv, Zewen Yang</p>
           <a href="https://arxiv.org/abs/2603.05754" target="_blank" rel="noopener">arXiv:2603.05754</a>
+          <div class="paper-visual" aria-hidden="true">
+            <svg viewBox="0 0 180 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="paper-thermal-heat">
+                  <stop stop-color="#ffe69a"/>
+                  <stop offset="0.38" stop-color="#eea24d"/>
+                  <stop offset="0.72" stop-color="#bf5965" stop-opacity="0.8"/>
+                  <stop offset="1" stop-color="#8c5377" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="paper-thermal-scan" x2="0" y2="1">
+                  <stop stop-color="#f5bb62" stop-opacity="0"/>
+                  <stop offset="1" stop-color="#f5bb62" stop-opacity="0.35"/>
+                </linearGradient>
+              </defs>
+              <path class="thermal-frame" d="M23 44V27h17m100 0h17v17M23 116v17h17m100 0h17v-17"/>
+              <circle class="thermal-heat" cx="92" cy="96" r="46" fill="url(#paper-thermal-heat)"/>
+              <path class="thermal-contour" d="M63 96c0-19 12-29 29-29s29 10 29 29-12 29-29 29-29-10-29-29Zm14 0c0-11 6-17 15-17s15 6 15 17-6 17-15 17-15-6-15-17Z"/>
+              <rect class="thermal-target" x="66" y="71" width="52" height="51" rx="5"/>
+              <g class="thermal-gripper">
+                <path d="M90 19v19m-19 0h38M71 38v17l8 8m30-25v17l-8 8"/>
+                <circle cx="90" cy="38" r="4"/>
+              </g>
+              <rect class="thermal-scan" x="23" y="27" width="134" height="28" fill="url(#paper-thermal-scan)"/>
+              <path class="thermal-scan" d="M23 55h134"/>
+            </svg>
+          </div>
         </article>
 
-        <article class="publication-card">
+        <article class="publication-card" data-paper="retarget">
           <div class="pub-meta">
+            <img class="venue-logo venue-logo-ras" src="assets/venue-logos/ieee-ras.webp" alt="IEEE Robotics and Automation Society logo" width="1274" height="469" loading="lazy" decoding="async">
             <span>2026</span>
             <span>IEEE RA-L</span>
           </div>
           <h3>DynaRetarget: Dynamically-Feasible Retargeting using Sampling-Based Trajectory Optimization</h3>
           <p>Victor Dhedin*, Ilyass Taouil*, Shafeef Omar*, <strong>Dian Yu</strong>, Kun Tao, Angela Dai, Majid Khadiv</p>
           <a href="https://arxiv.org/abs/2602.06827" target="_blank" rel="noopener">arXiv:2602.06827</a>
+          <div class="paper-visual" aria-hidden="true">
+            <svg viewBox="0 0 180 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="art-guide" d="M15 135h150"/>
+              <path class="retarget-transfer" d="M73 76h31m-6-5 6 5-6 5"/>
+              <g class="source-skeleton">
+                <circle cx="45" cy="38" r="9"/>
+                <path d="M45 47v37"/>
+                <path class="source-arm" d="m45 58-15 15-6 16m21-31 15 14 6-6"/>
+                <path class="source-leg-left" d="m45 84-11 22-7 21h-8"/>
+                <path class="source-leg-right" d="m45 84 14 19 3 24h8"/>
+                <circle cx="45" cy="58" r="3"/>
+                <circle cx="45" cy="84" r="3"/>
+              </g>
+              <g class="robot-skeleton">
+                <rect x="123" y="29" width="18" height="18" rx="3"/>
+                <rect x="121" y="55" width="22" height="30" rx="3"/>
+                <path d="M132 47v8"/>
+                <path class="robot-arm" d="m121 60-14 16-5 14m41-30 12 15 7-7"/>
+                <path class="robot-leg-left" d="m127 85-10 22-8 20h-8"/>
+                <path class="robot-leg-right" d="m137 85 13 21 3 21h9"/>
+                <circle cx="117" cy="107" r="3"/>
+                <circle cx="150" cy="106" r="3"/>
+                <path d="M127 38h2m6 0h2"/>
+              </g>
+            </svg>
+          </div>
         </article>
 
-        <article class="publication-card">
+        <article class="publication-card" data-paper="conflow">
           <div class="pub-meta">
+            <img class="venue-logo venue-logo-ras" src="assets/venue-logos/ieee-ras.webp" alt="IEEE Robotics and Automation Society logo" width="1274" height="469" loading="lazy" decoding="async">
             <span>2026</span>
             <span>IEEE T-RO</span>
           </div>
           <h3>UniConFlow: A Unified Constrained Flow-Matching Framework for Certified Motion Planning</h3>
           <p>Zewen Yang*, Xiaobing Dai*, <strong>Dian Yu*</strong>, Zhijun Li, Majid Khadiv, Sami Haddadin, Sandra Hirche</p>
           <a href="https://arxiv.org/abs/2506.02955" target="_blank" rel="noopener">arXiv:2506.02955</a>
+          <div class="paper-visual" aria-hidden="true">
+            <svg viewBox="0 0 180 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="flow-boundary" d="M15 33c50 0 40 25 76 25s39-25 74-25M15 130c50 0 40-25 76-25s39 25 74 25"/>
+              <path class="art-guide" d="M15 50c41 0 39 25 76 25s40-25 74-25M15 81h150M15 113c41 0 39-25 76-25s40 25 74 25"/>
+              <path class="flow-stream flow-stream-a" d="M15 50c41 0 39 25 76 25s40-25 74-25"/>
+              <path class="flow-stream flow-stream-b" d="M15 81h150"/>
+              <path class="flow-stream flow-stream-c" d="M15 113c41 0 39-25 76-25s40 25 74 25"/>
+              <path class="flow-vectors" d="m37 52 5 4-6 2m49 14 5 3-5 3m52-18 6-1-2 6M39 78l5 3-5 3m48-6 5 3-5 3m48-6 5 3-5 3m-98 23 6 2-5 4m48-26 5 3-5 3m52 13 2 6-6-1"/>
+              <circle class="flow-start" cx="15" cy="81" r="5"/>
+              <circle class="flow-goal" cx="165" cy="81" r="7"/>
+            </svg>
+          </div>
         </article>
 
-        <article class="publication-card">
+        <article class="publication-card" data-paper="barrier">
           <div class="pub-meta">
             <span>2025</span>
             <span>Under review</span>
@@ -146,6 +234,18 @@
           <h3>SafeFlow: Safe Robot Motion Planning with Flow Matching via Control Barrier Functions</h3>
           <p>Xiaobing Dai*, Zewen Yang*, <strong>Dian Yu*</strong>, Fangzhou Liu, Hamid Sadeghian, Sami Haddadin, Sandra Hirche</p>
           <a href="https://arxiv.org/abs/2504.08661" target="_blank" rel="noopener">arXiv:2504.08661</a>
+          <div class="paper-visual" aria-hidden="true">
+            <svg viewBox="0 0 180 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="barrier-unsafe" d="M18 110h140"/>
+              <circle class="barrier-obstacle" cx="90" cy="100" r="19"/>
+              <circle class="barrier-ring" cx="90" cy="100" r="35"/>
+              <path class="barrier-safe-path" d="M18 110C41 107 44 37 91 37S137 108 158 110"/>
+              <path class="barrier-shield" d="m90 87 10 4v9c0 7-10 13-10 13s-10-6-10-13v-9Zm-5 11 4 4 7-8"/>
+              <circle class="barrier-agent" cx="0" cy="0" r="5"/>
+              <circle class="barrier-goal" cx="158" cy="110" r="7"/>
+              <path class="art-cross" d="m155 110 2 2 4-5"/>
+            </svg>
+          </div>
         </article>
       </div>
     </section>
