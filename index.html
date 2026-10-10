@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="research.css">
   <link rel="stylesheet" href="experience.css">
   <link rel="stylesheet" href="profile-contact.css">
+  <link rel="stylesheet" href="travel-map.css">
 </head>
 <body>
   <canvas id="signal-field" aria-hidden="true"></canvas>
@@ -465,6 +466,51 @@
         </nav>
       </div>
     </section>
+    <section class="travel-section" id="exploring" aria-labelledby="travel-title">
+      <div class="travel-heading">
+        <h2 id="travel-title">Still exploring the world...</h2>
+        <div class="travel-views" role="group" aria-label="Map view" hidden>
+          <button type="button" data-map-view="world" aria-pressed="true">World</button>
+          <button type="button" data-map-view="europe" aria-pressed="false">Europe</button>
+          <button type="button" data-map-view="east-asia" aria-pressed="false">East Asia</button>
+        </div>
+      </div>
+      <figure class="travel-map">
+        <img id="travel-map-image" src="assets/travel-map/world.svg" alt="Pixel world map with visited places marked in black across China, Japan, Europe, and Pittsburgh." width="1100" height="450" loading="lazy" decoding="async">
+        <figcaption>
+          <span class="travel-legend"><span aria-hidden="true"></span>Been there</span>
+          <span id="travel-map-caption" aria-live="polite">World · 23 places</span>
+        </figcaption>
+      </figure>
+      <details class="travel-place-list">
+        <summary>23 places &amp; counting</summary>
+        <ul>
+          <li>Shanghai</li>
+          <li>Wuxi</li>
+          <li>Suzhou</li>
+          <li>Hangzhou</li>
+          <li>Chengdu</li>
+          <li>Chongqing</li>
+          <li>Beijing</li>
+          <li>Qinhuangdao</li>
+          <li>Zhenjiang</li>
+          <li>Tokyo</li>
+          <li>Munich</li>
+          <li>Zurich</li>
+          <li>Florence</li>
+          <li>Bologna</li>
+          <li>Venice</li>
+          <li>Mallorca</li>
+          <li>Malta</li>
+          <li>Karlsruhe</li>
+          <li>Heidelberg</li>
+          <li>Nuremberg</li>
+          <li>Mannheim</li>
+          <li>Stuttgart</li>
+          <li>Pittsburgh</li>
+        </ul>
+      </details>
+    </section>
   </main>
 
   <footer class="footer profile-footer">
@@ -490,5 +536,6 @@
 
   <script src="script.js"></script>
   <script src="experience.js"></script>
+  <script src="travel-map.js"></script>
 </body>
 </html>
