@@ -12,6 +12,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="paper-effects.css">
+  <link rel="stylesheet" href="affiliations.css">
+  <link rel="stylesheet" href="research.css">
+  <link rel="stylesheet" href="experience.css">
+  <link rel="stylesheet" href="profile-contact.css">
 </head>
 <body>
   <canvas id="signal-field" aria-hidden="true"></canvas>
@@ -31,27 +36,18 @@
   </header>
 
   <main id="top">
-    <section class="hero-section">
+    <section class="hero-section profile-hero" aria-labelledby="profile-name">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Technical University of Munich · ATARI Lab</p>
-          <h1 class="serif-title">Dian Yu</h1>
-          <p class="lead">
-            PhD candidate working on reliable robot learning, safety-critical control, and foundation models for physical robot systems.
-          </p>
-          <p class="profile-summary">
-            My research sits between generative action policies and explicit physical structure: diffusion and flow-matching models, control barrier functions, trajectory optimization, and hardware deployment.
-          </p>
-          <div class="lab-readout" aria-label="Research readout">
-            <div><span>role</span><strong>PhD Candidate</strong></div>
-            <div><span>focus</span><strong>robot learning under constraints</strong></div>
-            <div><span>stack</span><strong>diffusion · flow matching · CBF · MPC</strong></div>
-          </div>
-          <div class="hero-actions">
-            <a class="primary-action" href="mailto:go69joc@mytum.de">Email</a>
-            <a class="secondary-action" href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+          <p class="eyebrow">PhD Candidate · Robotics</p>
+          <h1 class="serif-title" id="profile-name">Dian Yu</h1>
+          <p class="profile-affiliation">Technical University of Munich<span>ATARI Lab · MIRMI</span></p>
+          <p class="profile-focus">Generative action policies and safe robot control.</p>
+          <nav class="hero-actions" aria-label="Profile links">
+            <a class="primary-action" href="mailto:imdian.yu@tum.de">Email</a>
+            <a class="secondary-action" href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
             <a class="secondary-action" href="https://linkedin.com/in/dian-yu-51b6652ab" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
+          </nav>
         </div>
 
         <aside class="portrait-panel" aria-label="Portrait of Dian Yu">
@@ -59,34 +55,51 @@
             <img src="portrait.jpg" alt="Dian Yu portrait">
           </div>
           <div class="portrait-meta">
-            <span>Munich, Germany</span>
-            <span>Reliable Robot Learning</span>
+            <span>Heidelberg, Germany</span>
+            <span>Shot by Yuna</span>
           </div>
         </aside>
       </div>
-      <div class="hero-rail" aria-hidden="true">RCI / CONTROL / VLA / SIM2REAL</div>
     </section>
 
     <section class="section" id="work">
       <div class="section-head">
         <p class="section-label">Research</p>
-        <h2>Learning-enabled robots with explicit physical structure.</h2>
+        <blockquote class="research-idea">
+          <h2>“The leap from model intelligence to robot intelligence is a leap in action generation.”</h2>
+          <footer>— My view, though I suspect many others share it.</footer>
+        </blockquote>
+        <p class="research-intro">My work asks how robots can turn richer observations into actions that are safe, physically feasible, and reusable across tasks.</p>
       </div>
       <div class="research-grid">
         <article class="research-card">
           <span>01</span>
-          <h3>Diffusion policy discovery</h3>
-          <p>Mining rare but valid behaviors from diffusion policies, repairing them with sampling-based trajectory optimization, and folding them back into training.</p>
+          <h3>Perception-augmented action policies</h3>
+          <p>I study how richer sensing can shape action generation, from thermal perception to multimodal vision-language-action (VLA) policies. My goal is to ground robot behavior in physical context, including conditions where visual observations alone are unreliable.</p>
+          <div class="research-related">
+            <span>Related work</span>
+            <a href="#paper-thermal">Safe-Night VLA</a>
+          </div>
         </article>
         <article class="research-card">
           <span>02</span>
-          <h3>Certified generative planning</h3>
-          <p>Combining flow matching, control barrier functions, convex optimization, and prescribed-time dynamics for constraint-aware robot motion generation.</p>
+          <h3>Safe action generation</h3>
+          <p>I combine diffusion and flow matching with control barrier functions and trajectory optimization. I work toward action generation that respects safety limits and robot dynamics, connecting learned behaviors to motions a robot can execute.</p>
+          <div class="research-related">
+            <span>Related work</span>
+            <a href="#paper-barrier">SafeFlow</a>
+            <a href="#paper-conflow">UniConFlow</a>
+            <a href="#paper-retarget">DynaRetarget</a>
+          </div>
         </article>
         <article class="research-card">
           <span>03</span>
-          <h3>Multimodal VLA systems</h3>
-          <p>Extending vision-language-action policies with physical sensing, thermal perception, and runtime safety filters for real-world manipulation.</p>
+          <h3>Multi-skill action policies</h3>
+          <p>I explore how generative policies can discover and learn diverse behaviors, including rare but valid actions. This motivates my work toward a growing repertoire of skills that robots can reuse and combine across tasks.</p>
+          <div class="research-related">
+            <span>Related work</span>
+            <a href="#paper-diffusion">Guided Discovery of New Behaviors</a>
+          </div>
         </article>
       </div>
     </section>
@@ -98,54 +111,178 @@
         <p class="section-note">Diffusion policies, flow matching, certified constraints, thermal VLA, and deployment-facing robot systems.</p>
       </div>
       <div class="publication-list">
-        <article class="publication-card featured">
+        <article class="publication-card featured" data-paper="diffusion" id="paper-diffusion">
           <div class="pub-meta">
+            <img class="venue-logo" src="assets/venue-logos/corl-2026.png" alt="CoRL 2026 logo" width="1280" height="640" loading="lazy" decoding="async">
             <span>2026</span>
             <span>CoRL 2026</span>
           </div>
           <h3>Guided Discovery of New Behaviors using Diffusion Policies</h3>
           <p><strong>Dian Yu</strong>, Sebastian Sanokowski, Majid Khadiv</p>
           <a href="https://arxiv.org/abs/2606.08743" target="_blank" rel="noopener">arXiv:2606.08743</a>
+          <div class="paper-background" aria-hidden="true">
+            <div class="diffusion-field">
+              <span style="--x:3.571%;--y:8.333%;--dx:-10px;--dy:-10px;--lag:0.00s"></span>
+              <span style="--x:10.714%;--y:8.333%;--dx:-16px;--dy:9px;--lag:0.00s"></span>
+              <span style="--x:17.857%;--y:8.333%;--dx:21px;--dy:-7px;--lag:0.00s"></span>
+              <span style="--x:25.000%;--y:8.333%;--dx:15px;--dy:12px;--lag:0.00s"></span>
+              <span style="--x:32.143%;--y:8.333%;--dx:9px;--dy:-4px;--lag:0.00s"></span>
+              <span style="--x:39.286%;--y:8.333%;--dx:3px;--dy:15px;--lag:0.00s"></span>
+              <span style="--x:46.429%;--y:8.333%;--dx:-3px;--dy:-1px;--lag:0.00s"></span>
+              <span style="--x:53.571%;--y:8.333%;--dx:-9px;--dy:-17px;--lag:0.00s"></span>
+              <span style="--x:60.714%;--y:8.333%;--dx:-15px;--dy:2px;--lag:0.00s"></span>
+              <span style="--x:67.857%;--y:8.333%;--dx:-21px;--dy:-14px;--lag:0.00s"></span>
+              <span style="--x:75.000%;--y:8.333%;--dx:16px;--dy:5px;--lag:0.00s"></span>
+              <span style="--x:82.143%;--y:8.333%;--dx:10px;--dy:-11px;--lag:0.00s"></span>
+              <span style="--x:89.286%;--y:8.333%;--dx:4px;--dy:8px;--lag:0.00s"></span>
+              <span style="--x:96.429%;--y:8.333%;--dx:-2px;--dy:-8px;--lag:0.00s"></span>
+              <span style="--x:3.571%;--y:25.000%;--dx:-8px;--dy:11px;--lag:0.08s"></span>
+              <span style="--x:10.714%;--y:25.000%;--dx:-14px;--dy:-5px;--lag:0.08s"></span>
+              <span style="--x:17.857%;--y:25.000%;--dx:-20px;--dy:14px;--lag:0.08s"></span>
+              <span style="--x:25.000%;--y:25.000%;--dx:17px;--dy:-2px;--lag:0.08s"></span>
+              <span style="--x:32.143%;--y:25.000%;--dx:11px;--dy:17px;--lag:0.08s"></span>
+              <span style="--x:39.286%;--y:25.000%;--dx:5px;--dy:1px;--lag:0.08s"></span>
+              <span style="--x:46.429%;--y:25.000%;--dx:-1px;--dy:-15px;--lag:0.08s"></span>
+              <span style="--x:53.571%;--y:25.000%;--dx:-7px;--dy:4px;--lag:0.08s"></span>
+              <span style="--x:60.714%;--y:25.000%;--dx:-13px;--dy:-12px;--lag:0.08s"></span>
+              <span style="--x:67.857%;--y:25.000%;--dx:-19px;--dy:7px;--lag:0.08s"></span>
+              <span style="--x:75.000%;--y:25.000%;--dx:18px;--dy:-9px;--lag:0.08s"></span>
+              <span style="--x:82.143%;--y:25.000%;--dx:12px;--dy:10px;--lag:0.08s"></span>
+              <span style="--x:89.286%;--y:25.000%;--dx:6px;--dy:-6px;--lag:0.08s"></span>
+              <span style="--x:96.429%;--y:25.000%;--dx:0px;--dy:13px;--lag:0.08s"></span>
+              <span style="--x:3.571%;--y:41.667%;--dx:-6px;--dy:-3px;--lag:0.16s"></span>
+              <span style="--x:10.714%;--y:41.667%;--dx:-12px;--dy:16px;--lag:0.16s"></span>
+              <span style="--x:17.857%;--y:41.667%;--dx:-18px;--dy:0px;--lag:0.16s"></span>
+              <span style="--x:25.000%;--y:41.667%;--dx:19px;--dy:-16px;--lag:0.16s"></span>
+              <span style="--x:32.143%;--y:41.667%;--dx:13px;--dy:3px;--lag:0.16s"></span>
+              <span style="--x:39.286%;--y:41.667%;--dx:7px;--dy:-13px;--lag:0.16s"></span>
+              <span style="--x:46.429%;--y:41.667%;--dx:1px;--dy:6px;--lag:0.16s"></span>
+              <span style="--x:53.571%;--y:41.667%;--dx:-5px;--dy:-10px;--lag:0.16s"></span>
+              <span style="--x:60.714%;--y:41.667%;--dx:-11px;--dy:9px;--lag:0.16s"></span>
+              <span style="--x:67.857%;--y:41.667%;--dx:-17px;--dy:-7px;--lag:0.16s"></span>
+              <span style="--x:75.000%;--y:41.667%;--dx:20px;--dy:12px;--lag:0.16s"></span>
+              <span style="--x:82.143%;--y:41.667%;--dx:14px;--dy:-4px;--lag:0.16s"></span>
+              <span style="--x:89.286%;--y:41.667%;--dx:8px;--dy:15px;--lag:0.16s"></span>
+              <span style="--x:96.429%;--y:41.667%;--dx:2px;--dy:-1px;--lag:0.16s"></span>
+              <span style="--x:3.571%;--y:58.333%;--dx:-4px;--dy:-17px;--lag:0.00s"></span>
+              <span style="--x:10.714%;--y:58.333%;--dx:-10px;--dy:2px;--lag:0.00s"></span>
+              <span style="--x:17.857%;--y:58.333%;--dx:-16px;--dy:-14px;--lag:0.00s"></span>
+              <span style="--x:25.000%;--y:58.333%;--dx:21px;--dy:5px;--lag:0.00s"></span>
+              <span style="--x:32.143%;--y:58.333%;--dx:15px;--dy:-11px;--lag:0.00s"></span>
+              <span style="--x:39.286%;--y:58.333%;--dx:9px;--dy:8px;--lag:0.00s"></span>
+              <span style="--x:46.429%;--y:58.333%;--dx:3px;--dy:-8px;--lag:0.00s"></span>
+              <span style="--x:53.571%;--y:58.333%;--dx:-3px;--dy:11px;--lag:0.00s"></span>
+              <span style="--x:60.714%;--y:58.333%;--dx:-9px;--dy:-5px;--lag:0.00s"></span>
+              <span style="--x:67.857%;--y:58.333%;--dx:-15px;--dy:14px;--lag:0.00s"></span>
+              <span style="--x:75.000%;--y:58.333%;--dx:-21px;--dy:-2px;--lag:0.00s"></span>
+              <span style="--x:82.143%;--y:58.333%;--dx:16px;--dy:17px;--lag:0.00s"></span>
+              <span style="--x:89.286%;--y:58.333%;--dx:10px;--dy:1px;--lag:0.00s"></span>
+              <span style="--x:96.429%;--y:58.333%;--dx:4px;--dy:-15px;--lag:0.00s"></span>
+              <span style="--x:3.571%;--y:75.000%;--dx:-2px;--dy:4px;--lag:0.08s"></span>
+              <span style="--x:10.714%;--y:75.000%;--dx:-8px;--dy:-12px;--lag:0.08s"></span>
+              <span style="--x:17.857%;--y:75.000%;--dx:-14px;--dy:7px;--lag:0.08s"></span>
+              <span style="--x:25.000%;--y:75.000%;--dx:-20px;--dy:-9px;--lag:0.08s"></span>
+              <span style="--x:32.143%;--y:75.000%;--dx:17px;--dy:10px;--lag:0.08s"></span>
+              <span style="--x:39.286%;--y:75.000%;--dx:11px;--dy:-6px;--lag:0.08s"></span>
+              <span style="--x:46.429%;--y:75.000%;--dx:5px;--dy:13px;--lag:0.08s"></span>
+              <span style="--x:53.571%;--y:75.000%;--dx:-1px;--dy:-3px;--lag:0.08s"></span>
+              <span style="--x:60.714%;--y:75.000%;--dx:-7px;--dy:16px;--lag:0.08s"></span>
+              <span style="--x:67.857%;--y:75.000%;--dx:-13px;--dy:0px;--lag:0.08s"></span>
+              <span style="--x:75.000%;--y:75.000%;--dx:-19px;--dy:-16px;--lag:0.08s"></span>
+              <span style="--x:82.143%;--y:75.000%;--dx:18px;--dy:3px;--lag:0.08s"></span>
+              <span style="--x:89.286%;--y:75.000%;--dx:12px;--dy:-13px;--lag:0.08s"></span>
+              <span style="--x:96.429%;--y:75.000%;--dx:6px;--dy:6px;--lag:0.08s"></span>
+              <span style="--x:3.571%;--y:91.667%;--dx:0px;--dy:-10px;--lag:0.16s"></span>
+              <span style="--x:10.714%;--y:91.667%;--dx:-6px;--dy:9px;--lag:0.16s"></span>
+              <span style="--x:17.857%;--y:91.667%;--dx:-12px;--dy:-7px;--lag:0.16s"></span>
+              <span style="--x:25.000%;--y:91.667%;--dx:-18px;--dy:12px;--lag:0.16s"></span>
+              <span style="--x:32.143%;--y:91.667%;--dx:19px;--dy:-4px;--lag:0.16s"></span>
+              <span style="--x:39.286%;--y:91.667%;--dx:13px;--dy:15px;--lag:0.16s"></span>
+              <span style="--x:46.429%;--y:91.667%;--dx:7px;--dy:-1px;--lag:0.16s"></span>
+              <span style="--x:53.571%;--y:91.667%;--dx:1px;--dy:-17px;--lag:0.16s"></span>
+              <span style="--x:60.714%;--y:91.667%;--dx:-5px;--dy:2px;--lag:0.16s"></span>
+              <span style="--x:67.857%;--y:91.667%;--dx:-11px;--dy:-14px;--lag:0.16s"></span>
+              <span style="--x:75.000%;--y:91.667%;--dx:-17px;--dy:5px;--lag:0.16s"></span>
+              <span style="--x:82.143%;--y:91.667%;--dx:20px;--dy:-11px;--lag:0.16s"></span>
+              <span style="--x:89.286%;--y:91.667%;--dx:14px;--dy:8px;--lag:0.16s"></span>
+              <span style="--x:96.429%;--y:91.667%;--dx:8px;--dy:-8px;--lag:0.16s"></span>
+            </div>
+          </div>
         </article>
 
-        <article class="publication-card">
+        <article class="publication-card" data-paper="pacdp">
           <div class="pub-meta">
+            <img class="venue-logo venue-logo-arxiv" src="assets/venue-logos/arxiv.svg" alt="arXiv logo" width="247" height="111" loading="lazy" decoding="async">
+            <span>2026</span>
+            <span>Preprint</span>
+          </div>
+          <h3>PAC-DP: PAC-Bayesian Diffusion Policy Learning</h3>
+          <p>Mohammad Hasan Yeganegi, <strong>Dian Yu</strong>, Andrea Del Prete, Majid Khadiv, Matteo Saveriano</p>
+          <a href="https://arxiv.org/abs/2607.24296" target="_blank" rel="noopener">arXiv:2607.24296</a>
+          <div class="paper-background" aria-hidden="true">
+            <span class="effect-layer layer-a"></span>
+            <span class="effect-layer layer-b"></span>
+          </div>
+        </article>
+
+        <article class="publication-card" data-paper="thermal" id="paper-thermal">
+          <div class="pub-meta">
+            <img class="venue-logo" src="assets/venue-logos/iros-2026.png" alt="IROS 2026 Pittsburgh logo" width="2560" height="1662" loading="lazy" decoding="async">
             <span>2026</span>
             <span>IROS 2026</span>
           </div>
           <h3>Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation</h3>
           <p><strong>Dian Yu*</strong>, Qingchuan Zhou*, Bingkun Huang, Majid Khadiv, Zewen Yang</p>
           <a href="https://arxiv.org/abs/2603.05754" target="_blank" rel="noopener">arXiv:2603.05754</a>
+          <div class="paper-background" aria-hidden="true">
+            <span class="effect-layer layer-a"></span>
+            <span class="effect-layer layer-b"></span>
+          </div>
         </article>
 
-        <article class="publication-card">
+        <article class="publication-card" data-paper="retarget" id="paper-retarget">
           <div class="pub-meta">
+            <img class="venue-logo venue-logo-ras" src="assets/venue-logos/ieee-ras.webp" alt="IEEE Robotics and Automation Society logo" width="1274" height="469" loading="lazy" decoding="async">
             <span>2026</span>
             <span>IEEE RA-L</span>
           </div>
           <h3>DynaRetarget: Dynamically-Feasible Retargeting using Sampling-Based Trajectory Optimization</h3>
           <p>Victor Dhedin*, Ilyass Taouil*, Shafeef Omar*, <strong>Dian Yu</strong>, Kun Tao, Angela Dai, Majid Khadiv</p>
           <a href="https://arxiv.org/abs/2602.06827" target="_blank" rel="noopener">arXiv:2602.06827</a>
+          <div class="paper-background" aria-hidden="true">
+            <span class="effect-layer layer-a"></span>
+            <span class="effect-layer layer-b"></span>
+          </div>
         </article>
 
-        <article class="publication-card">
+        <article class="publication-card" data-paper="conflow" id="paper-conflow">
           <div class="pub-meta">
+            <img class="venue-logo venue-logo-ras" src="assets/venue-logos/ieee-ras.webp" alt="IEEE Robotics and Automation Society logo" width="1274" height="469" loading="lazy" decoding="async">
             <span>2026</span>
             <span>IEEE T-RO</span>
           </div>
           <h3>UniConFlow: A Unified Constrained Flow-Matching Framework for Certified Motion Planning</h3>
           <p>Zewen Yang*, Xiaobing Dai*, <strong>Dian Yu*</strong>, Zhijun Li, Majid Khadiv, Sami Haddadin, Sandra Hirche</p>
           <a href="https://arxiv.org/abs/2506.02955" target="_blank" rel="noopener">arXiv:2506.02955</a>
+          <div class="paper-background" aria-hidden="true">
+            <span class="effect-layer layer-a"></span>
+            <span class="effect-layer layer-b"></span>
+          </div>
         </article>
 
-        <article class="publication-card">
+        <article class="publication-card" data-paper="barrier" id="paper-barrier">
           <div class="pub-meta">
+            <img class="venue-logo venue-logo-arxiv" src="assets/venue-logos/arxiv.svg" alt="arXiv logo" width="247" height="111" loading="lazy" decoding="async">
             <span>2025</span>
             <span>Under review</span>
           </div>
           <h3>SafeFlow: Safe Robot Motion Planning with Flow Matching via Control Barrier Functions</h3>
           <p>Xiaobing Dai*, Zewen Yang*, <strong>Dian Yu*</strong>, Fangzhou Liu, Hamid Sadeghian, Sami Haddadin, Sandra Hirche</p>
           <a href="https://arxiv.org/abs/2504.08661" target="_blank" rel="noopener">arXiv:2504.08661</a>
+          <div class="paper-background" aria-hidden="true">
+            <span class="effect-layer layer-a"></span>
+            <span class="effect-layer layer-b"></span>
+          </div>
         </article>
       </div>
     </section>
@@ -154,47 +291,132 @@
       <div class="section-head sticky-head">
         <p class="section-label">Experience</p>
         <h2>Research, systems, deployment.</h2>
+        <div class="experience-tabs" role="tablist" aria-label="Experience duration">
+          <button type="button" role="tab" id="experience-tab-longer" aria-controls="experience-panel-longer" aria-selected="true" tabindex="0">Mid &amp; long-term</button>
+          <button type="button" role="tab" id="experience-tab-short" aria-controls="experience-panel-short" aria-selected="false" tabindex="-1">Short-term</button>
+        </div>
       </div>
-      <div class="timeline">
+      <div class="timeline" id="experience-panel-longer" role="tabpanel" aria-labelledby="experience-tab-longer" tabindex="0">
         <article class="timeline-item">
-          <time>Jun 2026 - Present</time>
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-tum" src="assets/affiliation-logos/tum.svg" alt="Technical University of Munich logo" width="152" height="80" loading="lazy" decoding="async">
+              <img class="affiliation-logo affiliation-logo-atari" src="assets/affiliation-logos/atari.webp" alt="ATARI Lab logo" width="507" height="492" loading="lazy" decoding="async">
+              <img class="affiliation-logo affiliation-logo-mirmi" src="assets/affiliation-logos/mirmi.png" alt="Munich Institute of Robotics and Machine Intelligence logo" width="300" height="132" loading="lazy" decoding="async">
+            </div>
+            <time>Jun 2026 - Present</time>
+          </div>
           <h3>PhD Candidate · Technical University of Munich</h3>
           <p>ATARI Lab, supervised by Prof. Dr. Majid Khadiv.</p>
         </article>
         <article class="timeline-item">
-          <time>Jun 2024 - Jun 2026</time>
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-tum" src="assets/affiliation-logos/tum.svg" alt="Technical University of Munich logo" width="152" height="80" loading="lazy" decoding="async">
+              <img class="affiliation-logo affiliation-logo-atari" src="assets/affiliation-logos/atari.webp" alt="ATARI Lab logo" width="507" height="492" loading="lazy" decoding="async">
+              <img class="affiliation-logo affiliation-logo-mirmi" src="assets/affiliation-logos/mirmi.png" alt="Munich Institute of Robotics and Machine Intelligence logo" width="300" height="132" loading="lazy" decoding="async">
+            </div>
+            <time>Jun 2024 - Jun 2026</time>
+          </div>
           <h3>Master's Thesis Student & Research Intern · ATARI Lab, MIRMI, TUM</h3>
           <p>Physically consistent system identification via convex optimization and LMI constraints; sampling-based control and MPC for flow-matching training and inference; VLA models for humanoid loco-manipulation.</p>
         </article>
         <article class="timeline-item">
-          <time>Oct 2023 - Present</time>
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-dash" src="assets/affiliation-logos/dash.png" alt="TUM DASH logo" width="1600" height="492" loading="lazy" decoding="async">
+            </div>
+            <time>Oct 2023 - Apr 2026</time>
+          </div>
           <h3>Student Subteam Lead, Control Team · TUM DASH</h3>
           <p>ROS2 control stack development and electronics integration for a lower-limb exoskeleton platform.</p>
         </article>
         <article class="timeline-item">
-          <time>Sep 2025 - Nov 2025</time>
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-bosch" src="assets/affiliation-logos/bosch.svg" alt="Bosch logo" width="433" height="97" loading="lazy" decoding="async">
+            </div>
+            <time>Sep 2025 - Nov 2025</time>
+          </div>
           <h3>Working Student · Bosch CR/AIR Robot Learning</h3>
           <p>Robot learning research and prototyping in Bosch Corporate Research.</p>
         </article>
         <article class="timeline-item">
-          <time>Mar 2025 - Nov 2025</time>
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-unternehmertum" src="assets/affiliation-logos/unternehmertum.svg" alt="UnternehmerTUM logo" width="789" height="503" loading="lazy" decoding="async">
+            </div>
+            <time>Mar 2025 - Nov 2025</time>
+          </div>
           <h3>Co-founder & Technical Lead · Munitics</h3>
           <p>Prototype learning-based control for an autonomous legged-wheeled rescue robot; selected as a TUM IDEAward finalist.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-siemens" src="assets/affiliation-logos/siemens-healthineers.svg" alt="Siemens Healthineers logo" width="576" height="144" loading="lazy" decoding="async">
+            </div>
+            <time>Oct 2022 - Aug 2023</time>
+          </div>
+          <h3>Siemens Healthineers · Shanghai</h3>
+          <p>Connecting wires together.</p>
+        </article>
+      </div>
+      <div class="timeline" id="experience-panel-short" role="tabpanel" aria-labelledby="experience-tab-short" tabindex="0" hidden>
+        <article class="timeline-item hackathon-card">
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-eth" src="assets/affiliation-logos/eth-zurich.svg" alt="ETH Zurich logo" width="120" height="20" loading="lazy" decoding="async">
+              <img class="affiliation-logo affiliation-logo-ethrc" src="assets/affiliation-logos/ethrc.webp" alt="ETH Robotics Club logo" width="480" height="99" loading="lazy" decoding="async">
+            </div>
+            <p class="project-location">Zurich, Switzerland</p>
+          </div>
+          <h3>DreamMotion · ETHRC Robotics Hackathon</h3>
+          <p>Real-time conversation and physical interaction with a humanoid robot.</p>
+          <a class="project-repo" href="https://github.com/maedmatt/DreamMotion" aria-label="View DreamMotion repository on GitHub" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a>
+          <figure class="hackathon-photo">
+            <img src="assets/projects/dreammotion-hackathon.webp" alt="Team interacting with a humanoid robot at the ETHRC Robotics Hackathon in Zurich." width="1280" height="853" loading="lazy" decoding="async">
+          </figure>
+        </article>
+        <article class="timeline-item hackathon-card">
+          <div class="experience-meta">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-lerobot" src="assets/affiliation-logos/lerobot.webp" alt="LeRobot logo" width="480" height="156" loading="lazy" decoding="async">
+            </div>
+            <p class="project-location">Munich, Germany</p>
+          </div>
+          <h3>LeThrower · LeRobot Hackathon</h3>
+          <p>Generative robot throwing with reinforcement learning and flow matching.</p>
+          <a class="project-repo" href="https://github.com/Chiniklas/LeThrower" aria-label="View LeThrower repository on GitHub" target="_blank" rel="noopener">View repository <span aria-hidden="true">↗</span></a>
+          <figure class="hackathon-photo">
+            <img src="assets/projects/munich-ai-hackathon.webp" alt="LeThrower robot throwing demonstration with a tracked ball trajectory, target bins, and a depth view." width="2476" height="920" loading="lazy" decoding="async">
+          </figure>
         </article>
       </div>
     </section>
 
     <section class="section compact-section">
       <div class="info-grid">
-        <article>
+        <article id="education">
           <p class="section-label">Education</p>
-          <h3>Technical University of Munich</h3>
-          <p class="education-entry">
-            <span>PhD Candidate, ATARI Lab.</span>
-            <span>M.Sc. Robotics, Cognition, Intelligence, GPA 1.3, graduated with high distinction.</span>
-          </p>
-          <h3>HAW Hamburg / USST</h3>
-          <p>Dual B.Eng. background in electrical engineering and automation, ranked first in both programs.</p>
+          <div class="education-school">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-tum" src="assets/affiliation-logos/tum.svg" alt="Technical University of Munich logo" width="152" height="80" loading="lazy" decoding="async">
+            </div>
+            <h3>Technical University of Munich</h3>
+            <p class="education-entry">
+              <span>PhD Candidate, ATARI Lab.</span>
+              <span>M.Sc. Robotics, Cognition, Intelligence, GPA 1.3, graduated with high distinction.</span>
+            </p>
+          </div>
+          <div class="education-school">
+            <div class="affiliation-logos">
+              <img class="affiliation-logo affiliation-logo-haw" src="assets/affiliation-logos/haw-hamburg.webp" alt="HAW Hamburg logo" width="480" height="177" loading="lazy" decoding="async">
+              <img class="affiliation-logo affiliation-logo-usst" src="assets/affiliation-logos/usst.webp" alt="University of Shanghai for Science and Technology logo" width="192" height="192" loading="lazy" decoding="async">
+            </div>
+            <h3>HAW Hamburg / USST</h3>
+            <p>Dual B.Eng. background in electrical engineering and automation, ranked first in both programs.</p>
+          </div>
         </article>
         <article>
           <p class="section-label">Tools</p>
@@ -218,19 +440,36 @@
       </div>
     </section>
 
-    <section class="contact-section" id="contact">
-      <p class="section-label">Contact</p>
-      <h2>Open to research conversations around robot learning, safety, and deployment.</h2>
-      <div class="contact-links">
-        <a href="mailto:go69joc@mytum.de">go69joc@mytum.de</a>
-        <a href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://linkedin.com/in/dian-yu-51b6652ab" target="_blank" rel="noopener">LinkedIn</a>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-heading">
+        <p class="section-label">Contact</p>
+        <h2 id="contact-title">Oh, you wanna know more details?</h2>
+      </div>
+      <div class="contact-nudge" aria-hidden="true">
+        <svg viewBox="0 0 140 90" width="140" height="90" fill="none" focusable="false">
+          <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 59C30 81 59 62 47 38C36 14 21 41 45 48C69 54 87 35 123 38" />
+            <path d="m109 27 16 11-14 13" />
+          </g>
+        </svg>
+      </div>
+      <div class="contact-details">
+        <a class="contact-email" href="mailto:imdian.yu@tum.de" aria-label="Email Dian Yu at imdian.yu@tum.de">
+          <span class="contact-kind">Email</span>
+          <span class="contact-address">imdian.yu@tum.de</span>
+          <span class="contact-arrow" aria-hidden="true">↗</span>
+        </a>
+        <nav class="contact-profiles" aria-label="Contact profiles">
+          <a href="https://scholar.google.com/citations?user=pEFo4msAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
+          <a href="https://linkedin.com/in/dian-yu-51b6652ab" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+        </nav>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>© 2026 Dian Yu. Built as a lightweight static personal page.</p>
+  <footer class="footer profile-footer">
+    <p>© 2026 Dian Yu</p>
+    <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
   </footer>
 
   <aside class="bottom-pets" id="bottom-pets" aria-hidden="true">
@@ -250,5 +489,6 @@
   </aside>
 
   <script src="script.js"></script>
+  <script src="experience.js"></script>
 </body>
 </html>

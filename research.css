@@ -1,0 +1,86 @@
+#work .section-head {
+  max-width: 100%;
+  margin-bottom: 2rem;
+}
+
+#work .research-idea {
+  max-width: 1060px;
+  margin: 0;
+}
+
+#work .research-idea h2 {
+  font-size: clamp(2rem, 3.7vw, 3.4rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+#work .research-idea footer {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+#work .research-intro {
+  max-width: 720px;
+  margin: 1.4rem 0 0;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+#work .research-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+#work .research-card h3 {
+  max-width: 19ch;
+  font-size: 1.5rem;
+  line-height: 1.12;
+}
+
+#work .research-related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.8rem;
+  margin-top: auto;
+  padding-top: 1.3rem;
+}
+
+#work .research-related > span {
+  flex-basis: 100%;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#work .research-related a {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.22em;
+}
+
+#work .research-related a:hover {
+  text-decoration-color: currentColor;
+}
+
+#work .research-related a:focus-visible {
+  outline: 2px solid var(--ink-2);
+  outline-offset: 4px;
+}
+
+#publications .publication-card[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (min-width: 981px) {
+  #work .research-card h3 {
+    min-height: 2.24em;
+  }
+}
